@@ -1,8 +1,16 @@
 body{
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display:flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-a{
-  color: #00B7FF;
+.icons{
+  div{
+    padding: 10px;
+    width: 5vw;
+    height: 5vw;
+    background-color: #bada55;
+  }
 }
