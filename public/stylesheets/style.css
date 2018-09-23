@@ -1,8 +1,1 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-
-a {
-  color: #00B7FF; }
-
-/*# sourceMappingURL=style.css.map */
+body{margin:0;background:rgba(0,0,0,0.6)}#myVideo{position:fixed;right:0;bottom:0;min-width:100%;min-height:100%;z-index:-1;left:50%;transform:translateX(-50%)}.title h1{color:#fff;font-family:'Roboto', sans-serif;font-weight:300;font-size:5em;margin:0}.container{height:100vh;display:flex;align-content:center;align-items:center;justify-content:center;text-align:center;flex-direction:column;background:linear-gradient(to bottom right, rgba(45,149,173,0.62) 0%, rgba(144,254,213,0.4) 45%, rgba(100,47,158,0.48) 100%)}.inner-container{display:flex;align-content:center;align-items:center;justify-content:center;text-align:center;flex-direction:column;background:rgba(0,0,0,0.6);box-shadow:0 0 47px 0px #000;padding:5em 8em}.icons{display:grid;grid-template-columns:repeat(4, 1fr)}.icons div{margin:10px;width:5em;height:5em;background-color:#999;opacity:0;transform:translateY(50px);animation:icon_start cubic-bezier(0.05, 0.64, 0.09, 0.98) 800ms forwards}.icons div:nth-child(1){animation-delay:550ms}.icons div:nth-child(2){animation-delay:600ms}.icons div:nth-child(3){animation-delay:650ms}.icons div:nth-child(4){animation-delay:700ms}.icons div:nth-child(5){animation-delay:750ms}.icons div:nth-child(6){animation-delay:800ms}.icons div:nth-child(7){animation-delay:850ms}.icons div:nth-child(8){animation-delay:900ms}@keyframes icon_start{100%{transform:translateY(0px);opacity:1}}@keyframes bg_transition{0%{background:linear-gradient(#fff, #fff)}}
