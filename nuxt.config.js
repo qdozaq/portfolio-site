@@ -10,7 +10,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preload', href: '/images/email.svg', type: 'image'},
+      { rel: 'preload', href: '/images/github.svg', type: 'image'},
+      { rel: 'preload', href: '/images/linkedin.svg', type: 'image'},
+      { rel: 'preload', href: '/images/instagram.svg', type: 'image'},
+      { rel: 'preload', href: '/images/youtube.svg', type: 'image'},
     ]
   },
 

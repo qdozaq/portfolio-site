@@ -1,6 +1,5 @@
 <template>
 <div class="container">
-  <logo/>
   <h1>It me. Pauly D.</h1>
   <div>
     <p class="suplimental">This site is still under contruction
