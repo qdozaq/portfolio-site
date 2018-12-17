@@ -1,6 +1,6 @@
 # Portfolio Site
 
-This is vue/nuxt app for my portfolio site
+This is a vue/nuxt app for my portfolio site
 
 
 ## Build Setup
