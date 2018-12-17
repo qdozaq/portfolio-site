@@ -1,8 +1,30 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Tahoma, sans-serif; }
 
-a {
-  color: #00B7FF; }
+.suplimental {
+  color: #888;
+  font-style: italic; }
+
+.social-icons {
+  height: 40px; }
+  .social-icons a {
+    text-decoration: none; }
+
+.icon {
+  height: 100%;
+  filter: invert(0.4);
+  transition-property: transform, padding;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.05, 0.64, 0.04, 0.98); }
+  .icon:hover {
+    transform: scale(1.2);
+    padding: 0 10px; }
 
 /*# sourceMappingURL=style.css.map */
