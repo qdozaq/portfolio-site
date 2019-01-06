@@ -4,52 +4,18 @@ body{
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
-  overflow: hidden;
-  font-family: Tahoma, sans-serif
+  font-family: Tahoma, sans-serif;
+  overflow-x: hidden;
+  //background: url(http://api.thumbr.it/whitenoise-361x370.png?background=111111ff&noise=ffffff&density=5&opacity=5);
+  background-image: url("/images/whitenoise-361x370.png");
+  background-color: #111;
+}
+
+#introduction{
+  color: #eee;
 }
 
 .suplimental{
   color: #888;
   font-style: italic;
-}
-
-.social-icons{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  $move:.5em;
-
-  a{
-    text-decoration: none;
-    &:hover{
-      .icon{
-        transform: scale(1.2);
-        fill:#23b3e5;
-      }
-
-      & ~ a{
-        .icon{
-          transform: translateX($move);
-        }
-      }
-
-    }
-  }
-
-  &:hover .icon {
-    transform: translateX(-$move);
-  }
-}
-
-.icon{
-  height:40px;
-  width:auto;
-  fill: #5f5f5f;
-  padding: 0 5px;
-
-  transition-property: transform, fill;
-  transition-duration: 400ms;
-  transition-timing-function: cubic-bezier(.05,.64,.04,.98);
-
 }
