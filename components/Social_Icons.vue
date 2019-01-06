@@ -37,7 +37,7 @@
 
     a{
       text-decoration: none;
-      &:hover, &:active{
+      &:hover{
         .icon{
           transform: scale(1.2);
           fill:#40bdce;
@@ -52,7 +52,7 @@
       }
     }
 
-    &:hover, &:active{
+    &:hover{
       .icon{
         transform: translateX(-$move);
       }
