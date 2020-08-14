@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import SocialIcons from '../components/SocialIcons.svelte';
 </script>
 
@@ -48,6 +48,10 @@ iframe {
   margin: 0 0.5em;
 }
 
+.iframe-wrapper > iframe {
+	border: none;
+}
+
 </style>
 
 <svelte:head>
@@ -60,14 +64,11 @@ iframe {
 				<iframe
 					title="demo-reel"
 					src="https://player.vimeo.com/video/308906486?title=0&byline=0&portrait=0"
-					frameborder="0"
-					webkitallowfullscreen
-					mozallowfullscreen
 					allowfullscreen
 				></iframe>
 			</div>
 			<script src="https://player.vimeo.com/api/player.js"></script>
 		</section>
 		<h1>I'm Paul Mendoza</h1>
-		<SocialIcons class='thing'/>
+		<SocialIcons />
 </main>
