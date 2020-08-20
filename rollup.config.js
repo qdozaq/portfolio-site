@@ -3,10 +3,12 @@ import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
+import alias from "@rollup/plugin-alias";
 // import typescript from "@rollup/plugin-typescript";
 import autoPreprocess from "svelte-preprocess";
 import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup.js";
+import path from "path";
 import pkg from "./package.json";
 
 const mode = process.env.NODE_ENV;
@@ -19,11 +21,19 @@ const onwarn = (warning, onwarn) =>
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
 
+const aliases = alias({
+  resolve: [".svelte", ".js"], //optional, by default this will just look for .js files or folders
+  entries: [
+    { find: "components", replacement: path.join(__dirname, "src/components") },
+  ],
+});
+
 export default {
   client: {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
+      aliases,
       replace({
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
@@ -79,6 +89,7 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
+      aliases,
       replace({
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode),
