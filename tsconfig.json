@@ -2,10 +2,7 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
 
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "components/*": ["components/*"]
-    }
+    "baseUrl": "src"
   },
 
   "include": ["src/**/*", "src/node_modules"],

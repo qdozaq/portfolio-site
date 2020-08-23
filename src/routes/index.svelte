@@ -1,5 +1,6 @@
 <script lang="ts">
   import HomeSection from "components/HomeSection.svelte";
+  import NavigationButton from "components/NavigationButton.svelte";
 </script>
 
 <style>
@@ -11,7 +12,13 @@
   }
 
   img {
-    width: 212px;
+    width: inherit;
+  }
+
+  .two {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 </style>
 
@@ -20,8 +27,14 @@
 </svelte:head>
 
 <main>
-  <HomeSection title="Paul Mendoza">
-    <img alt="evening" src="/evening.jpg" slot="content" />
+  <!-- <HomeSection title="Paul Mendoza">
+    <img alt="evening" src="/Evening.jpg" slot="content" />
     <a slot="action">more</a>
+  </HomeSection> -->
+  <HomeSection title="Paul Mendoza">
+    <img alt="me" src="/me.jpg" slot="content" />
+    <span slot="action">
+      <NavigationButton href="/about">about</NavigationButton>
+    </span>
   </HomeSection>
 </main>

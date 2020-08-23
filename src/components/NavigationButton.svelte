@@ -1,0 +1,55 @@
+<script lang="ts">
+  import Cheveron from "icons/Cheveron.svelte";
+  export let href: string;
+  export let point: "left" | "right" = "right";
+</script>
+
+<style type="scss">
+  @import "../sass/vars.scss";
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 200;
+    font-style: normal;
+    letter-spacing: 0.3rem;
+    font-size: 1rem;
+    text-align: left;
+
+    transition: transform 0.4s cubic-bezier(0.13, 0.9, 0.17, 0.95),
+      letter-spacing 0.4s cubic-bezier(0.13, 0.9, 0.17, 0.95),
+      font-size $fast-transition ease-in-out;
+
+    &:hover {
+      letter-spacing: 0.6rem;
+      transform: translateX(20%);
+    }
+  }
+
+  .text {
+    margin-bottom: 3px;
+  }
+
+  .left {
+    text-align: right;
+  }
+
+  @media only screen and (min-width: 40rem) {
+    a {
+      letter-spacing: 0.4rem;
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<a rel="prefetch" {href} class:left={point === 'left'}>
+  {#if point === 'left'}
+    <Cheveron left />
+  {/if}
+  <span class="text">
+    <slot>more</slot>
+  </span>
+  {#if point === 'right'}
+    <Cheveron />
+  {/if}
+</a>
