@@ -18,7 +18,7 @@
     margin-right: 2rem;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 8rem 8rem 1fr;
   }
 
   h1 {
@@ -64,6 +64,10 @@
 
     .content {
       width: 20rem;
+    }
+
+    .grid {
+      grid-template-rows: 11rem 11rem 1fr;
     }
   }
 </style>
