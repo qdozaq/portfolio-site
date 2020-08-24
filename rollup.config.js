@@ -4,7 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
 import alias from "@rollup/plugin-alias";
-// import typescript from "@rollup/plugin-typescript";
+import typescript from "@rollup/plugin-typescript";
 import autoPreprocess from "svelte-preprocess";
 import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup.js";
@@ -13,6 +13,7 @@ import pkg from "./package.json";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
+const sourcemap = dev ? "inline" : false;
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) =>
@@ -26,6 +27,7 @@ const aliases = alias({
   entries: [
     { find: "components", replacement: path.join(__dirname, "src/components") },
     { find: "icons", replacement: path.join(__dirname, "src/icons") },
+    { find: "utils", replacement: path.join(__dirname, "src/utils") },
   ],
 });
 
@@ -50,7 +52,9 @@ export default {
         dedupe: ["svelte"],
       }),
       commonjs(),
-      // typescript({sourceMap: dev}),
+      typescript({
+        sourceMap: !!sourcemap,
+      }),
 
       legacy &&
         babel({
@@ -104,7 +108,9 @@ export default {
         dedupe: ["svelte"],
       }),
       commonjs(),
-      // typescript(),
+      typescript({
+        sourceMap: !!sourcemap,
+      }),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require("module").builtinModules ||
