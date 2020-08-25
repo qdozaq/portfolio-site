@@ -5,9 +5,10 @@
   import { amountscrolled } from "utils";
 
   let progress = 0;
-  function handleScroll() {
-    progress = amountscrolled();
-    console.log(progress);
+  function handleScroll(e: WheelEvent) {
+    progress += e.deltaY / 50;
+    console.log(e.deltaY);
+    // progress = amountscrolled();
   }
 </script>
 
@@ -19,7 +20,7 @@
     color: #fff;
   }
   main {
-    height: calc(5 * 100vh);
+    /* height: calc(5 * 100vh); */
   }
 
   img {
@@ -37,7 +38,7 @@
   <title>I'm Paul Mendoza</title>
 </svelte:head>
 
-<svelte:window on:scroll={handleScroll} />
+<svelte:window on:wheel|passive={handleScroll} />
 
 <main>
   <HomeSection title="Paul Mendoza">

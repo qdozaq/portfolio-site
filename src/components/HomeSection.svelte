@@ -5,7 +5,7 @@
 <style type="scss">
   @import "../sass/vars.scss";
   section {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 50%;
     left: 50%;
