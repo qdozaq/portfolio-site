@@ -1,11 +1,13 @@
 <script lang="ts">
   export let title: string;
+  export let tPos: number = 0;
+  export let cPos: number = 0;
 </script>
 
 <style type="scss">
   @import "../sass/vars.scss";
   section {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 50%;
     left: 50%;
@@ -30,7 +32,7 @@
     grid-row: 1;
     grid-column: 1 / 3;
     align-self: center;
-    justify-self: center;
+    justify-self: start;
     margin: 0;
     transition: font-size $fast-transition ease-in-out;
   }
@@ -74,13 +76,12 @@
 
 <section>
   <div class="grid">
-    <div class="content">
+    <div style="transform: translateY({cPos}px)" class="content">
       <slot name="content" />
     </div>
-    <h1>{title}</h1>
-    <div class="action">
+    <h1 style="transform: translateY({tPos}px)">{title}</h1>
+    <div style="transform: translateY({cPos}px)" class="action">
       <slot name="action" />
     </div>
-
   </div>
 </section>

@@ -1,15 +1,19 @@
 <script lang="ts">
   import HomeSection from "components/HomeSection.svelte";
   import NavigationButton from "components/NavigationButton.svelte";
+  import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
+  import sections from "components/sections";
   import { amountscrolled } from "utils";
 
   let progress = 0;
-  function handleScroll(e: WheelEvent) {
-    progress += e.deltaY / 50;
-    console.log(e.deltaY);
-    // progress = amountscrolled();
+  function handleScroll() {
+    progress = amountscrolled();
   }
+  // function handleScroll(e: WheelEvent) {
+  //   progress += e.deltaY / 50;
+  //   console.log(e.deltaY);
+  // }
 </script>
 
 <style>
@@ -18,13 +22,6 @@
     background-color: #111;
     font-family: Roboto, sans-serif;
     color: #fff;
-  }
-  main {
-    /* height: calc(5 * 100vh); */
-  }
-
-  img {
-    width: inherit;
   }
 
   .two {
@@ -38,14 +35,15 @@
   <title>I'm Paul Mendoza</title>
 </svelte:head>
 
-<svelte:window on:wheel|passive={handleScroll} />
+<svelte:window on:scroll|passive={handleScroll} />
 
 <main>
-  <HomeSection title="Paul Mendoza">
+  <HomeContainer {progress} {sections} />
+  <!-- <HomeSection title="Paul Mendoza">
     <img alt="me" src="/me.jpg" slot="content" />
     <span slot="action">
       <NavigationButton href="/about">about</NavigationButton>
     </span>
-  </HomeSection>
-  <Progressbar {progress} />
+  </HomeSection> -->
+  <Progressbar {progress} sections={sections.length} />
 </main>
