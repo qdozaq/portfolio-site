@@ -1,22 +1,24 @@
 <script lang="ts">
   import { spring } from "svelte/motion";
   import { quadInOut } from "svelte/easing";
-  import { roundDownToMultiple } from "utils";
+  import { roundDownToMultiple, roundToNearestMultiple } from "utils";
+  import { onMount } from "svelte";
 
   export let sections: any[];
   export let progress = 0;
   export let winHeight: number;
+  let refs: HTMLDivElement[] = [];
   const titleOffsetMultiplier = 2;
+
+  // get the percentage each section takes out of the total progess
+  $: sectionPct = 100 / (sections.length - 1);
 
   const coords = spring(
     { y: 0 },
-    { stiffness: 0.08, damping: 0.9, precision: 0.0005 }
+    { stiffness: 0.08, damping: 0.9, precision: 0.0001 }
   );
 
   $: {
-    // get the percentage each section takes out of the total progess
-    const sectionPct = 100 / (sections.length - 1);
-
     const currentSection =
       roundDownToMultiple(progress, sectionPct) / sectionPct;
 
@@ -31,25 +33,35 @@
     const y = (mappedProgress / sectionPct) * winHeight;
     coords.set({ y: y });
   }
+
+  function autoScroll() {
+    setTimeout(() => {
+      const currentSection =
+        roundToNearestMultiple(progress, sectionPct) / sectionPct;
+
+      refs[currentSection].scrollIntoView({
+        inline: "start",
+        behavior: "auto",
+      });
+
+      autoScroll();
+    }, 2000);
+  }
+
+  onMount(() => {
+    autoScroll();
+  });
 </script>
 
 <style>
-  /* .container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
+  .waypoint {
     height: 100vh;
   }
-  .waypoint {
-    scroll-snap-align: center;
-    height: 100vh;
-  } */
 </style>
 
-<!-- <svelte:window on:resize|passive={handleResize} /> -->
 <div class="container" style="height:calc({sections.length} * 100vh)">
-  <!-- <div class="container"> -->
   {#each sections as section (section.id)}
-    <div class="waypoint" />
+    <div class="waypoint" bind:this={refs[section.id]} />
     <svelte:component
       this={section.component}
       position={section.id}
