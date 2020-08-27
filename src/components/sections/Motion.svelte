@@ -1,9 +1,6 @@
 <script lang="ts">
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
-
-  export let tPos: number;
-  export let cPos: number;
 </script>
 
 <style>
@@ -13,7 +10,7 @@
   }
 </style>
 
-<Section title="Motion Designer" {tPos} {cPos}>
+<Section title="Motion Designer" {...$$props}>
   <img alt="me" src="/hypnotized.jpg" slot="content" />
   <span slot="action">
     <NavigationButton href="/motion">more</NavigationButton>

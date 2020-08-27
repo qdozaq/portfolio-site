@@ -4,16 +4,30 @@
   import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
   import sections from "components/sections";
-  import { amountscrolled } from "utils";
+  import { amountScrolled, getWindowHeight, getDocHeight } from "utils";
+  import { onMount } from "svelte";
 
   let progress = 0;
+  let docHeight = 0;
+  let winHeight = 0;
+
   function handleScroll() {
-    progress = amountscrolled();
+    progress = amountScrolled(docHeight, winHeight);
+  }
+
+  function handleResize() {
+    docHeight = getDocHeight();
+    winHeight = getWindowHeight();
   }
   // function handleScroll(e: WheelEvent) {
   //   progress += e.deltaY / 50;
   //   console.log(e.deltaY);
   // }
+
+  onMount(() => {
+    docHeight = getDocHeight();
+    winHeight = getWindowHeight();
+  });
 </script>
 
 <style>
@@ -35,10 +49,12 @@
   <title>I'm Paul Mendoza</title>
 </svelte:head>
 
-<svelte:window on:scroll|passive={handleScroll} />
+<svelte:window
+  on:scroll|passive={handleScroll}
+  on:resize|passive={handleResize} />
 
 <main>
-  <HomeContainer {progress} {sections} />
+  <HomeContainer {progress} {sections} {winHeight} />
   <!-- <HomeSection title="Paul Mendoza">
     <img alt="me" src="/me.jpg" slot="content" />
     <span slot="action">

@@ -1,5 +1,6 @@
 <script lang="ts">
   export let title: string;
+  export let position: number = 0;
   export let tPos: number = 0;
   export let cPos: number = 0;
 </script>
@@ -74,7 +75,7 @@
   }
 </style>
 
-<section>
+<section style="top: calc(100vh * {position} + 50%)">
   <div class="grid">
     <div style="transform: translateY({cPos}px)" class="content">
       <slot name="content" />

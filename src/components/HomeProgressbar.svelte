@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { spring } from "svelte/motion";
-  import { roundToMultiple } from "utils";
+  import { roundToNearestMultiple } from "utils";
   export let progress: number = 0;
   export let sections: number = 5;
 
@@ -17,7 +17,9 @@
     // The percentage each section is out of the whole
     const sectionPct = 100 / (sections - 1);
     const y =
-      Math.round(roundToMultiple(progress, sectionPct) * containerHeight) / 100;
+      Math.round(
+        roundToNearestMultiple(progress, sectionPct) * containerHeight
+      ) / 100;
 
     coords.set({ y });
   }
@@ -67,7 +69,7 @@
   }
 </style>
 
-<svelte:window on:resize={handleResize} />
+<svelte:window on:resize|passive={handleResize} />
 <div class="container" bind:this={containerRef}>
   {#each Array(sections) as _}
     <div class="circle" />

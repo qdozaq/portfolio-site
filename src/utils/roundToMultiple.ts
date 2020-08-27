@@ -1,4 +1,4 @@
-export function roundToMultiple(n: number, multiple: number) {
+export function roundToNearestMultiple(n: number, multiple: number) {
   const divide = multiple / (n % multiple);
 
   const nearest =
@@ -7,4 +7,8 @@ export function roundToMultiple(n: number, multiple: number) {
       : Math.ceil(n / multiple) * multiple;
 
   return nearest;
+}
+
+export function roundDownToMultiple(n: number, m: number) {
+  return Math.floor(n / m) * m;
 }

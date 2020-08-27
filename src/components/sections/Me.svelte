@@ -1,9 +1,8 @@
 <script lang="ts">
+  import HomeContainer from "components/HomeContainer.svelte";
+  import Cheveron from "icons/Cheveron.svelte";
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
-
-  export let tPos: number;
-  export let cPos: number;
 </script>
 
 <style>
@@ -13,7 +12,7 @@
   }
 </style>
 
-<Section title="Paul Mendoza" {tPos} {cPos}>
+<Section title="Paul Mendoza" {...$$props}>
   <img alt="me" src="/me.jpg" slot="content" />
   <span slot="action">
     <NavigationButton href="/about">about</NavigationButton>
