@@ -13,6 +13,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    content-visibility: auto;
   }
 
   .grid {
@@ -21,7 +22,7 @@
     margin-right: 2rem;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 8rem 8rem 1fr;
+    grid-template-rows: 6rem 8rem 1fr;
   }
 
   h1 {
@@ -32,7 +33,7 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
     grid-row: 1;
     grid-column: 1 / 3;
-    align-self: center;
+    align-self: start;
     justify-self: start;
     margin: 0;
     transition: font-size $fast-transition ease-in-out;

@@ -4,14 +4,17 @@
 </script>
 
 <style>
-  img {
+  video {
     width: inherit;
     box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
   }
 </style>
 
 <Section title="Motion Designer" {...$$props}>
-  <img alt="me" src="/hypnotized.jpg" slot="content" />
+  <video autoplay muted loop slot="content">
+    <source src="/motion_preview.webm" type="video/webm" />
+    <source src="/motion_preview.mp4" type="video/mp4" />
+  </video>
   <span slot="action">
     <NavigationButton href="/motion">more</NavigationButton>
   </span>

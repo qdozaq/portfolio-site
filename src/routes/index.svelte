@@ -12,7 +12,8 @@
   let winHeight = 0;
 
   function handleScroll() {
-    progress = amountScrolled(docHeight, winHeight);
+    const p = amountScrolled(docHeight, winHeight);
+    progress = p > 100 ? 100 : p < 0 ? 0 : p;
   }
 
   function handleResize() {
