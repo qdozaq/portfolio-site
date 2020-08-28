@@ -35,7 +35,8 @@
   function autoScroll() {
     refs[currentSection].scrollIntoView({
       inline: "start",
-      behavior: "auto",
+      block: "start",
+      behavior: "smooth",
     });
   }
 </script>
