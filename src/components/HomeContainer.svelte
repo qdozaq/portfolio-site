@@ -7,7 +7,6 @@
   export let sections: any[];
   export let progress = 0;
   export let winHeight: number;
-  let refs: HTMLDivElement[] = [];
   const titleOffsetMultiplier = 2;
 
   // get the percentage each section takes out of the total progess
@@ -33,9 +32,9 @@
   }
 
   function autoScroll() {
-    refs[currentSection].scrollIntoView({
-      inline: "start",
-      block: "start",
+    window.scrollTo({
+      top: currentSection * winHeight,
+      left: 0,
       behavior: "smooth",
     });
   }
@@ -85,10 +84,6 @@
   .no-space {
     margin-left: -9.7%;
   }
-
-  .waypoint {
-    height: 100vh;
-  }
 </style>
 
 <h1>
@@ -102,7 +97,6 @@
 </h1>
 <div class="container" style="height:calc({sections.length} * 100vh)">
   {#each sections as section, index}
-    <div class="waypoint" bind:this={refs[index]} />
     <svelte:component
       this={section.component}
       position={index}
