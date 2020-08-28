@@ -11,7 +11,7 @@
 </style>
 
 <Section title="Motion Designer" {...$$props}>
-  <video autoplay muted loop slot="content">
+  <video playsinline autoplay muted loop slot="content">
     <source src="/motion_preview.webm" type="video/webm" />
     <source src="/motion_preview.mp4" type="video/mp4" />
   </video>
