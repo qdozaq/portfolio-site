@@ -47,6 +47,7 @@
 
 <style>
   :global(body) {
+    overflow: hidden;
     margin: 0;
     background-color: #111;
     font-family: Roboto, sans-serif;
