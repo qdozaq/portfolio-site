@@ -78,7 +78,7 @@
   }
 </style>
 
-<section style="top: calc(100vh * {position} + 50%)">
+<section style="top: calc(100% * {position} + 50%)">
   <div class="grid">
     <div style="transform: translateY({cPos}px)" class="content">
       <slot name="content" />

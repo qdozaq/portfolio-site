@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Cheveron from "icons/Cheveron.svelte";
+  import Chevron from "icons/Chevron.svelte";
   export let href: string;
   export let point: "left" | "right" = "right";
 </script>
@@ -10,7 +10,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-weight: 200;
+    font-weight: 300;
     font-style: normal;
     letter-spacing: 0.3rem;
     font-size: 1rem;
@@ -36,6 +36,7 @@
 
   @media only screen and (min-width: 40rem) {
     a {
+      font-weight: 200;
       letter-spacing: 0.4rem;
       font-size: 1.5rem;
     }
@@ -44,12 +45,12 @@
 
 <a rel="prefetch" {href} class:left={point === 'left'}>
   {#if point === 'left'}
-    <Cheveron left />
+    <Chevron rotation={180} />
   {/if}
   <span class="text">
     <slot>more</slot>
   </span>
   {#if point === 'right'}
-    <Cheveron />
+    <Chevron />
   {/if}
 </a>

@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { spring } from "svelte/motion";
-  import { roundToNearestMultiple } from "utils";
-  export let progress: number = 0;
+  import { roundToNearestMultiple, progress } from "utils";
   export let sections: number = 5;
 
   const coords = spring(
@@ -18,10 +17,10 @@
     const sectionPct = 100 / (sections - 1);
     const y =
       Math.round(
-        roundToNearestMultiple(progress, sectionPct) * containerHeight
+        roundToNearestMultiple($progress, sectionPct) * containerHeight
       ) / 100;
 
-    coords.set({ y });
+    coords.set({ y: ($progress / 100) * containerHeight });
   }
 
   function handleResize() {

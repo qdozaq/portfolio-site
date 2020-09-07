@@ -1,6 +1,4 @@
 <script lang="ts">
-  import HomeContainer from "components/HomeContainer.svelte";
-  import Cheveron from "icons/Cheveron.svelte";
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
 </script>
