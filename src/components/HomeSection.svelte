@@ -13,7 +13,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    content-visibility: auto;
   }
 
   .grid {
@@ -36,6 +35,7 @@
     align-self: start;
     justify-self: start;
     margin: 0;
+    will-change: transform;
     transition: font-size $fast-transition ease-in-out;
   }
 
@@ -45,6 +45,7 @@
     justify-self: end;
     align-self: end;
     width: 14rem;
+    will-change: transform;
 
     transition: width $fast-transition ease-in-out;
   }
@@ -53,6 +54,7 @@
     grid-row: 3 / 4;
     grid-column: 2 / 5;
     justify-self: end;
+    will-change: transform;
   }
 
   @media only screen and (min-width: 34rem) {

@@ -10,20 +10,44 @@
   let progress = 0;
   let docHeight = 0;
   let winHeight = 0;
+  let initialDrag = 0;
 
-  function handleScroll() {
-    const p = amountScrolled(docHeight, winHeight);
-    progress = p > 100 ? 100 : p < 0 ? 0 : p;
-  }
+  // function handleScroll() {
+  //   const p = amountScrolled(docHeight, winHeight);
+  //   progress = p > 100 ? 100 : p < 0 ? 0 : p;
+  // }
 
   function handleResize() {
     docHeight = getDocHeight();
     winHeight = getWindowHeight();
   }
-  // function handleScroll(e: WheelEvent) {
-  //   progress += e.deltaY / 50;
-  //   console.log(e.deltaY);
-  // }
+
+  function handleScroll(e: WheelEvent) {
+    const p = progress + e.deltaY / 50;
+    progress = p > 100 ? 100 : p < 0 ? 0 : p;
+  }
+
+  function handleDrag(e: TouchEvent) {
+    const y = e?.targetTouches[0]?.screenY ?? 0;
+    // console.log(e);
+    switch (e.type) {
+      case "touchstart":
+        initialDrag = y;
+        return;
+      case "touchmove":
+        break;
+      case "touchend":
+        initialDrag = 0;
+        return;
+      default:
+        console.log(e);
+    }
+
+    const dy = initialDrag - y;
+    const p = progress + dy / 200;
+    progress = p > 100 ? 100 : p < 0 ? 0 : p;
+    console.log(dy, progress);
+  }
 
   onMount(() => {
     docHeight = getDocHeight();
@@ -39,10 +63,8 @@
     color: #fff;
   }
 
-  .two {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  main {
+    touch-action: none;
   }
 </style>
 
@@ -51,10 +73,13 @@
 </svelte:head>
 
 <svelte:window
-  on:scroll|passive={handleScroll}
+  on:wheel|passive={handleScroll}
   on:resize|passive={handleResize} />
 
-<main>
+<main
+  on:touchmove|passive={handleDrag}
+  on:touchstart={handleDrag}
+  on:touchend={handleDrag}>
   <HomeContainer {progress} {sections} {winHeight} />
   <!-- <HomeSection title="Paul Mendoza">
     <img alt="me" src="/me.jpg" slot="content" />
