@@ -44,7 +44,8 @@
     }
 
     const dy = initialDrag - y;
-    const p = progress + dy / 200;
+    console.log(winHeight, dy);
+    const p = progress + dy / winHeight;
     progress = p > 100 ? 100 : p < 0 ? 0 : p;
     console.log(dy, progress);
   }

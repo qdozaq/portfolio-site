@@ -1,6 +1,6 @@
 <script lang="ts">
   import { spring } from "svelte/motion";
-  import { quintInOut } from "svelte/easing";
+  import { quadInOut, sineInOut } from "svelte/easing";
   import { roundDownToMultiple, roundToNearestMultiple } from "utils";
   import { onMount } from "svelte";
 
@@ -22,7 +22,7 @@
     const pctDoneOfCurrentSection = (progress % sectionPct) / sectionPct;
 
     // use the pct done on a single section as time for the easing function
-    const sectionProgress = quintInOut(pctDoneOfCurrentSection);
+    const sectionProgress = sineInOut(pctDoneOfCurrentSection);
 
     const mappedProgress =
       sectionProgress * sectionPct + sectionPct * currentSectionFromStart;
