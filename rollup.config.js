@@ -56,29 +56,37 @@ export default {
         sourceMap: !!sourcemap,
       }),
 
-      legacy &&
-        babel({
-          extensions: [".js", ".mjs", ".html", ".svelte"],
-          babelHelpers: "runtime",
-          exclude: ["node_modules/@babel/**"],
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                targets: "> 0.25%, not dead",
-              },
-            ],
+      babel({
+        extensions: [".js", ".mjs", ".html", ".svelte"],
+        babelHelpers: "runtime",
+        exclude: ["node_modules/@babel/**"],
+        presets: [
+          [
+            "@babel/preset-env",
+            {
+              targets: "> 0.25%, not dead",
+            },
           ],
-          plugins: [
-            "@babel/plugin-syntax-dynamic-import",
-            [
-              "@babel/plugin-transform-runtime",
-              {
-                useESModules: true,
-              },
-            ],
+        ],
+        plugins: [
+          "@babel/plugin-syntax-dynamic-import",
+          [
+            "@babel/plugin-transform-runtime",
+            {
+              useESModules: true,
+            },
           ],
-        }),
+          [
+            "prismjs",
+            {
+              languages: ["javascript"],
+              plugins: ["line-numbers"],
+              theme: "okaidia",
+              css: true,
+            },
+          ],
+        ],
+      }),
 
       !dev &&
         terser({

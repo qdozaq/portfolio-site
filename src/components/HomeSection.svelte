@@ -3,7 +3,7 @@
   export let position: number = 0;
   export let tPos: number = 0;
   export let cPos: number = 0;
-  export let load = false;
+  export let load: boolean = false;
 
   // poor mans lazy load
   $: loaded = loaded || load;
