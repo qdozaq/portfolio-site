@@ -156,6 +156,7 @@
   <svelte:component
     this={section.component}
     position={index}
+    load={currentSection >= index}
     tPos={-$coords.y * titleOffsetMultiplier + winHeight * index}
     cPos={-$coords.y} />
 {/each}

@@ -3,6 +3,10 @@
   export let position: number = 0;
   export let tPos: number = 0;
   export let cPos: number = 0;
+  export let load = false;
+
+  // poor mans lazy load
+  $: loaded = loaded || load;
 </script>
 
 <style type="scss">
@@ -81,7 +85,9 @@
 <section style="top: calc(100% * {position} + 50%)">
   <div class="grid">
     <div style="transform: translateY({cPos}px)" class="content">
-      <slot name="content" />
+      {#if loaded}
+        <slot name="content" />
+      {/if}
     </div>
     <h1 style="transform: translateY({tPos}px)">{title}</h1>
     <div style="transform: translateY({cPos}px)" class="action">
