@@ -10,6 +10,7 @@
 
   function handleResize() {
     winHeight = getWindowHeight();
+    window.scrollTo({ top: 0 });
   }
 
   function handleScroll(e: WheelEvent) {
@@ -52,11 +53,13 @@
     background-color: #111;
     font-family: Roboto, sans-serif;
     color: #fff;
+    height: 100vh;
   }
 
   main {
     touch-action: none;
     width: 100vw;
+    background: red;
   }
 </style>
 
@@ -66,13 +69,13 @@
 
 <svelte:window
   on:wheel|passive={handleScroll}
-  on:resize|passive={handleResize} />
+  on:resize|passive={handleResize}
+  on:orientationchange|passive={handleResize} />
 
-<main
-  style="height:{winHeight}px"
+<svelte:body
   on:touchmove|passive={handleDrag}
   on:touchstart={handleDrag}
-  on:touchend={handleDrag}>
-  <HomeContainer {sections} {winHeight} />
-  <Progressbar sections={sections.length} />
-</main>
+  on:touchend={handleDrag} />
+
+<HomeContainer {sections} {winHeight} />
+<Progressbar sections={sections.length} />

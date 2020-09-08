@@ -13,13 +13,6 @@
   let containerHeight = 0;
 
   $: {
-    // The percentage each section is out of the whole
-    const sectionPct = 100 / (sections - 1);
-    const y =
-      Math.round(
-        roundToNearestMultiple($progress, sectionPct) * containerHeight
-      ) / 100;
-
     coords.set({ y: ($progress / 100) * containerHeight });
   }
 
@@ -68,7 +61,9 @@
   }
 </style>
 
-<svelte:window on:resize|passive={handleResize} />
+<svelte:window
+  on:resize|passive={handleResize}
+  on:orientationchange={handleResize} />
 <div class="container" bind:this={containerRef}>
   {#each Array(sections) as _}
     <div class="circle" />
