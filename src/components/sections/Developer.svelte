@@ -50,6 +50,7 @@
     right: 0;
     height: 4px;
     width: 50%;
+    transform: translateX(1px);
   }
 
   code {
