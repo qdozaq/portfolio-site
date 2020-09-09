@@ -2,7 +2,7 @@
   import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
   import sections from "components/sections";
-  import { getWindowHeight, getDocHeight, progress } from "utils";
+  import { getWindowHeight, progress, scrollEnabled } from "utils";
   import { onMount } from "svelte";
 
   let winHeight = 0;
@@ -14,6 +14,8 @@
   }
 
   function handleScroll(e: WheelEvent) {
+    if (!$scrollEnabled) return;
+
     progress.update((prog) => {
       const p = prog + e.deltaY / 25;
       return p > 100 ? 100 : p < 0 ? 0 : p;
@@ -21,6 +23,8 @@
   }
 
   function handleDrag(e: TouchEvent) {
+    if (!$scrollEnabled) return;
+
     const y = e?.targetTouches[0]?.screenY ?? 0;
     switch (e.type) {
       case "touchstart":

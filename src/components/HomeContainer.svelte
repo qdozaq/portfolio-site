@@ -112,9 +112,9 @@
     outline: none;
   }
 
-  @media only screen and (min-width: 34rem) {
+  @media only screen and (min-width: 25rem) {
     h1 {
-      left: calc(50% - 15rem);
+      left: calc(50% - 10.5rem);
     }
   }
 
@@ -122,6 +122,7 @@
     h1 {
       font-size: 5rem;
       top: calc(50% - 18.1rem);
+      left: calc(50% - 15.5rem);
     }
   }
 

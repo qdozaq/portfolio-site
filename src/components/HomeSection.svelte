@@ -23,16 +23,14 @@
     display: grid;
     margin-left: 2rem;
     margin-right: 2rem;
-    /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 6rem 8rem 1fr;
+    grid-template-rows: 6rem 8rem 1rem;
   }
 
   h1 {
     z-index: 2;
     font-weight: 500;
     font-size: 3rem;
-    /* line-height: 56px; */
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
     grid-row: 1;
     grid-column: 1 / 3;
@@ -61,13 +59,17 @@
     will-change: transform;
   }
 
-  @media only screen and (min-width: 34rem) {
+  @media only screen and (min-width: 25rem) {
     section {
-      width: 34rem;
+      width: 25rem;
     }
   }
 
   @media only screen and (min-width: 40rem) {
+    section {
+      width: 35rem;
+    }
+
     h1 {
       font-size: 5rem;
     }
@@ -77,7 +79,7 @@
     }
 
     .grid {
-      grid-template-rows: 11rem 11rem 1fr;
+      grid-template-rows: 11rem 11rem 1rem;
     }
   }
 </style>
