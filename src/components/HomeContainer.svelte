@@ -72,6 +72,7 @@
     padding: 0;
     margin: 0;
     color: #fff;
+    cursor: pointer;
 
     &.continue {
       bottom: 0;
@@ -97,16 +98,13 @@
   }
   .chev {
     display: inline-block;
-    width: 100%;
     height: 1.3rem;
     padding: 2rem 0;
+    pointer-events: none;
 
     transition: transform 0.3s cubic-bezier(0.13, 0.9, 0.17, 0.95);
   }
 
-  .nav:focus > .chev {
-    border-top: #40bdce 1px solid;
-  }
   .nav:focus,
   .chev:focus {
     outline: none;
@@ -163,7 +161,7 @@
 {/each}
 
 {#if currentSection > 0}
-  <button class="nav back" on:click={onBack} transition:fade>
+  <button class="nav back" name="back" on:click={onBack} transition:fade>
     <span class="chev" tabindex="-1">
       <Chevron rotation={-90} />
     </span>
@@ -171,7 +169,11 @@
 {/if}
 
 {#if currentSection < sections.length - 1}
-  <button class="nav continue" on:click={onContinue} transition:fade>
+  <button
+    class="nav continue"
+    name="continue"
+    on:click={onContinue}
+    transition:fade>
     <span class="chev" tabindex="-1">
       <Chevron rotation={90} />
     </span>

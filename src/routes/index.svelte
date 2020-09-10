@@ -2,11 +2,12 @@
   import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
   import sections from "components/sections";
-  import { getWindowHeight, progress, scrollEnabled } from "utils";
+  import { getWindowHeight, progress, scrollEnabled, throttle } from "utils";
   import { onMount } from "svelte";
 
   let winHeight = 0;
   let prevDrag = 0;
+  let prevDirection = 0;
 
   function handleResize() {
     winHeight = getWindowHeight();
@@ -16,11 +17,24 @@
   function handleScroll(e: WheelEvent) {
     if (!$scrollEnabled) return;
 
+    const direction = Math.sign(e.deltaY);
+    if (direction !== prevDirection) throttledScroll.cancel();
+    prevDirection = direction;
+
+    throttledScroll(e, direction);
+  }
+
+  // should offer consitent scroll across different browsers and devices
+  const throttledScroll = throttle(function scroll(
+    e: WheelEvent,
+    direction: number
+  ) {
     progress.update((prog) => {
-      const p = prog + e.deltaY / 25;
+      const p = prog + 3 * direction;
       return p > 100 ? 100 : p < 0 ? 0 : p;
     });
-  }
+  },
+  100);
 
   function handleDrag(e: TouchEvent) {
     if (!$scrollEnabled) return;

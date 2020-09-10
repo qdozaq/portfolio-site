@@ -14,10 +14,10 @@
   let code = Prism.highlight(
     `
   async function handleClick() {
-    const response = await fetch(
-      "https://cat-fact.herokuapp.com/facts/random"
-    );
-    const data = await response.json();
+    const response =
+      await fetch(catFactApiUrl);
+    const data =
+      await response.json();
     catFact = data.text;
     // Click for a cat fact 😺
   }
@@ -63,7 +63,7 @@
 
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     text-align: left;
 
     transition: transform 0.3s cubic-bezier(0.05, 0.64, 0.04, 0.98);
@@ -112,7 +112,6 @@
     position: absolute;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    transform: translate(2px, 1px);
     background: rgba(47, 108, 115, 0.8);
     color: rgb(64, 189, 206);
     font-size: 1.5rem;
@@ -126,11 +125,11 @@
   code {
     display: inline-block;
     font-size: 0.7rem;
-    margin: 1rem;
     background: none;
     color: #fff;
     line-height: 1rem;
-    white-space: pre-line;
+    white-space: pre;
+    transform: translate(-1rem, 1rem);
   }
 
   .fact {
