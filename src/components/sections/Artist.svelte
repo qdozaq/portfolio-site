@@ -1,17 +1,85 @@
 <script lang="ts">
+  import { spring } from "svelte/motion";
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
+
+  const coords = spring({ xOff: 0, yOff: 0 });
+
+  let spacing = 2;
+
+  function calculateSpace(spacing: number, position: number) {
+    return `translate(${spacing * position}rem, -${spacing * position}rem)`;
+  }
+
+  function mouseOver(e: MouseEvent) {
+    console.log(e.x, e.y);
+    spacing = 3;
+    coords.set({ xOff: 1, yOff: 1 });
+  }
+
+  function mouseOut(e: MouseEvent) {
+    coords.set({ xOff: 0, yOff: 0 });
+    spacing = 2;
+  }
 </script>
 
-<style>
+<style type="scss">
   img {
     width: inherit;
     box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
+    position: absolute;
+
+    transition: transform 0.5s cubic-bezier(0.23, 0.2, 0.09, 1);
+  }
+
+  .img-1 {
+    transform: translate(-2rem, 2rem);
+  }
+
+  .img-2 {
+    transform: translate(0, 0);
+  }
+
+  .img-3 {
+    transform: translate(2rem, -2rem);
+  }
+
+  .content {
+    position: relative;
+    width: inherit;
+    height: 14rem;
+    transform: translate(-1rem, -4rem);
+  }
+
+  @media only screen and (min-width: 40rem) {
+    .content {
+      height: 20rem;
+    }
+    .content:hover {
+      & > .img-1 {
+        transform: translate(-6rem, 6rem);
+      }
+
+      & > .img-2:hover {
+        transform: translate(0, -4rem);
+      }
+
+      & > .img-3 {
+        transform: translate(6rem, -6rem);
+        &:hover {
+          transform: translate(6rem, -8rem);
+        }
+      }
+    }
   }
 </style>
 
 <Section title="Artist" {...$$props}>
-  <img alt="me" src="/hypnotized.jpg" slot="content" />
+  <div class="content" slot="content">
+    <img class="img-3" alt="4th" src="/4th_400.jpg" />
+    <img class="img-2" alt="hand" src="/hand_400.jpg" />
+    <img class="img-1" alt="hypnotized" src="/hypnotized_400.jpg" />
+  </div>
   <span slot="action">
     <NavigationButton href="/art">more</NavigationButton>
   </span>

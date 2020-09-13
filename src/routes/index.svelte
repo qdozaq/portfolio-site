@@ -73,12 +73,6 @@
     color: #fff;
     height: 100vh;
   }
-
-  main {
-    touch-action: none;
-    width: 100vw;
-    background: red;
-  }
 </style>
 
 <svelte:head>
