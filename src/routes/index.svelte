@@ -24,15 +24,19 @@
     throttledScroll(e, direction);
   }
 
+  function updateProgress(dy: number) {
+    progress.update((prog) => {
+      const p = prog + dy;
+      return p > 100 ? 100 : p < 0 ? 0 : p;
+    });
+  }
+
   // should offer consitent scroll across different browsers and devices
   const throttledScroll = throttle(function scroll(
     e: WheelEvent,
     direction: number
   ) {
-    progress.update((prog) => {
-      const p = prog + 3 * direction;
-      return p > 100 ? 100 : p < 0 ? 0 : p;
-    });
+    updateProgress(3 * direction);
   },
   100);
 
@@ -51,12 +55,25 @@
 
     const dy = prevDrag - y;
 
-    progress.update((prog) => {
-      const p = prog + dy / 5;
-      return p > 100 ? 100 : p < 0 ? 0 : p;
-    });
+    updateProgress(dy / 10);
 
     prevDrag = y;
+  }
+
+  function handleKeydown(e: KeyboardEvent) {
+    let dy = 0;
+    switch (e.key.toUpperCase()) {
+      case "ARROWUP":
+        dy = -5;
+        break;
+      case "ARROWDOWN":
+        dy = 5;
+        break;
+      default:
+        return;
+    }
+
+    updateProgress(dy);
   }
 
   onMount(() => {
@@ -82,7 +99,8 @@
 <svelte:window
   on:wheel|passive={handleScroll}
   on:resize|passive={handleResize}
-  on:orientationchange|passive={handleResize} />
+  on:orientationchange|passive={handleResize}
+  on:keydown={handleKeydown} />
 
 <svelte:body
   on:touchmove|passive={handleDrag}
