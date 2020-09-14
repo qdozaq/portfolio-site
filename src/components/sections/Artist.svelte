@@ -55,6 +55,9 @@
     .content {
       height: 20rem;
     }
+  }
+
+  @media (hover: hover) {
     .content:hover {
       & > .img-1 {
         transform: translate(-6rem, 6rem);

@@ -73,12 +73,6 @@
     transform: scale(0.95);
   }
 
-  .content:hover {
-    .hover-card {
-      opacity: 1;
-    }
-  }
-
   .content:focus {
     outline: none;
   }
@@ -140,6 +134,14 @@
     text-align: left;
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (hover: hover) {
+    .content:hover {
+      .hover-card {
+        opacity: 1;
+      }
+    }
   }
 
   @media only screen and (min-width: 40rem) {
