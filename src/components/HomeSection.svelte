@@ -96,4 +96,7 @@
       <slot name="action" />
     </div>
   </div>
+  <div style="transform: translateY({cPos}px)">
+    <slot name="alt" />
+  </div>
 </section>
