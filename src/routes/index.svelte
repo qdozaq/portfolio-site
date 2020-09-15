@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PageTransition from "components/PageTransition.svelte";
   import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
   import sections from "components/sections";
@@ -81,17 +82,6 @@
   });
 </script>
 
-<style>
-  :global(body) {
-    overflow: hidden;
-    margin: 0;
-    background-color: #111;
-    font-family: Roboto, sans-serif;
-    color: #fff;
-    height: 100vh;
-  }
-</style>
-
 <svelte:head>
   <title>I'm Paul Mendoza</title>
 </svelte:head>
@@ -107,5 +97,7 @@
   on:touchstart={handleDrag}
   on:touchend={handleDrag} />
 
-<HomeContainer {sections} {winHeight} />
-<Progressbar sections={sections.length} />
+<PageTransition direction="left">
+  <HomeContainer {sections} {winHeight} />
+  <Progressbar sections={sections.length} />
+</PageTransition>
