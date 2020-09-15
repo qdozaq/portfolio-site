@@ -55,7 +55,7 @@
 
     const dy = prevDrag - y;
 
-    updateProgress(dy / 10);
+    updateProgress(dy / 18);
 
     prevDrag = y;
   }
