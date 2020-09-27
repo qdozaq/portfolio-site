@@ -1,17 +1,36 @@
 <script>
-  import PageTransition from "components/PageTransition.svelte";
   import NavigationButton from "components/NavigationButton.svelte";
 </script>
 
 <style>
+  h1 {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
   div {
     width: 7rem;
   }
 </style>
 
-<PageTransition direction="right">
-  <div>
-    <NavigationButton href="/" point="left">Back</NavigationButton>
-  </div>
-  <h1>About</h1>
-</PageTransition>
+<svelte:head>
+  <title>About</title>
+</svelte:head>
+
+<div>
+  <NavigationButton href="/" point="left">Back</NavigationButton>
+</div>
+<h1>About</h1>
+<p>
+  Hey I'm Paul Mendoza, a motion designer and software developer based in
+  Queens, NY.
+</p>
+
+<p>
+  Currently working as a frontend engineer at Vimeo and doing freelance
+  animation and motion design. I'm incredibly passionate about coming art and
+  technology and finding creative solutions to weird and odd problems.
+</p>
