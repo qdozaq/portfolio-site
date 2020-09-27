@@ -55,6 +55,10 @@
     .content {
       height: 20rem;
     }
+
+    img:active {
+      z-index: 10;
+    }
   }
 
   @media (hover: hover) {

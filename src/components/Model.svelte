@@ -22,7 +22,7 @@
     padding: 1rem;
     padding-top: 2rem;
     left: 50%;
-    top: 50%;
+    top: 50vh;
     transform: translate(-50%, -50%);
     background: rgba(47, 108, 115, 0.9);
     border-radius: 0.5rem;

@@ -53,10 +53,10 @@
   h1 {
     position: fixed;
     z-index: 2;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 3rem;
     left: 2rem;
-    top: calc(50% - 11.5rem);
+    top: calc(var(--win-height) - 11.5rem);
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
     transition: font-size $fast-transition ease-in-out;
@@ -119,7 +119,7 @@
   @media only screen and (min-width: 40rem) {
     h1 {
       font-size: 5rem;
-      top: calc(50% - 18.1rem);
+      top: calc(var(--win-height) - 18.1rem);
       left: calc(50% - 15.5rem);
     }
   }
@@ -143,7 +143,7 @@
   }
 </style>
 
-<h1>
+<h1 style="--win-height: {winHeight / 2}px">
   I'm <span class="article" class:show={sections[currentSection].prefix}>a</span>
   <span
     class="article no-space"
@@ -154,7 +154,7 @@
 {#each sections as section, index}
   <svelte:component
     this={section.component}
-    position={index}
+    position={index * winHeight + winHeight / 2}
     load={currentSection >= index}
     tPos={-$coords.y * titleOffsetMultiplier + winHeight * index}
     cPos={-$coords.y} />

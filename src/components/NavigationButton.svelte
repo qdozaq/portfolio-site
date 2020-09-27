@@ -21,12 +21,17 @@
       font-size $fast-transition ease-in-out;
 
     &:hover {
-      letter-spacing: 0.6rem;
+      letter-spacing: 0.5rem;
       transform: translateX(20%);
+    }
+
+    &.left:hover {
+      transform: translateX(-10%);
     }
   }
 
   .text {
+    margin-left: 0.5rem;
     margin-bottom: 3px;
   }
 
@@ -39,6 +44,9 @@
       font-weight: 200;
       letter-spacing: 0.4rem;
       font-size: 1.5rem;
+      &:hover {
+        letter-spacing: 0.6rem;
+      }
     }
   }
 </style>

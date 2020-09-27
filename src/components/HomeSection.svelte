@@ -14,7 +14,7 @@
   section {
     position: fixed;
     width: 100%;
-    top: 50%;
+    top: 50vh;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -84,7 +84,7 @@
   }
 </style>
 
-<section style="top: calc(100% * {position} + 50%)">
+<section style="top: {position}px">
   <div class="grid">
     <div style="transform: translateY({cPos}px)" class="content">
       {#if loaded}

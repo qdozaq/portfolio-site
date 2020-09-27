@@ -99,5 +99,5 @@
 
 <PageTransition direction="left">
   <HomeContainer {sections} {winHeight} />
-  <Progressbar sections={sections.length} />
+  <Progressbar sections={sections.length} {winHeight} />
 </PageTransition>

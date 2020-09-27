@@ -3,6 +3,7 @@
   import { spring } from "svelte/motion";
   import { roundToNearestMultiple, progress } from "utils";
   export let sections: number = 5;
+  export let winHeight: number;
 
   const coords = spring(
     { y: 0 },
@@ -32,9 +33,9 @@
     position: fixed;
     justify-content: space-between;
     flex-direction: column;
-    height: 50%;
+    height: 50vh;
+    top: var(--win-height);
     margin-left: 1rem;
-    top: 50%;
     transform: translateY(-50%);
   }
 
@@ -50,7 +51,7 @@
       background: #fff;
       box-shadow: 0 0 5px #fff;
       position: absolute;
-      top: 0;
+      top: 0px;
     }
   }
 
@@ -61,10 +62,11 @@
   }
 </style>
 
-<svelte:window
-  on:resize|passive={handleResize}
-  on:orientationchange={handleResize} />
-<div class="container" bind:this={containerRef}>
+<svelte:window on:resize={handleResize} on:orientationchange={handleResize} />
+<div
+  class="container"
+  bind:this={containerRef}
+  style="--win-height: {winHeight / 2}px">
   {#each Array(sections) as _}
     <div class="circle" />
   {/each}
