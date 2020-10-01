@@ -20,9 +20,6 @@
   <title>About</title>
 </svelte:head>
 
-<div>
-  <NavigationButton href="/" point="left">Back</NavigationButton>
-</div>
 <h1>About</h1>
 <p>
   Hey I'm Paul Mendoza, a motion designer and software developer based in

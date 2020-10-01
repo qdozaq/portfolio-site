@@ -20,7 +20,4 @@
   <title>Art</title>
 </svelte:head>
 
-<div>
-  <NavigationButton href="/" point="left">Back</NavigationButton>
-</div>
 <h1>Art</h1>

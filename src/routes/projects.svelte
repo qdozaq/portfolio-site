@@ -20,7 +20,4 @@
   <title>Projects</title>
 </svelte:head>
 
-<div>
-  <NavigationButton href="/" point="left">Back</NavigationButton>
-</div>
 <h1>Projects</h1>

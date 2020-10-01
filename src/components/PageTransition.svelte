@@ -18,13 +18,6 @@
   }
 </script>
 
-<style>
-  div {
-    height: 100vh;
-    width: 100wh;
-  }
-</style>
-
 <div
   in:flyPage={{ phase: 'in', direction }}
   out:flyPage={{ phase: 'out', direction }}>

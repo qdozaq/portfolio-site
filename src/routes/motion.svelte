@@ -20,7 +20,4 @@
   <title>Motion Work</title>
 </svelte:head>
 
-<div>
-  <NavigationButton href="/" point="left">Back</NavigationButton>
-</div>
 <h1>Motion Work</h1>
