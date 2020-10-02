@@ -12,6 +12,7 @@
 
   let containerRef: HTMLDivElement;
   let containerHeight = 0;
+  let mounted = false;
 
   $: {
     coords.set({ y: ($progress / 100) * containerHeight });
@@ -22,6 +23,7 @@
   }
 
   onMount(() => {
+    mounted = true;
     // 4 to offset for the pixel radius of the circle
     containerHeight = containerRef.getBoundingClientRect().height - 4;
   });
@@ -37,6 +39,10 @@
     top: var(--win-height);
     margin-left: 1rem;
     transform: translateY(-50%);
+  }
+
+  .container.ssr {
+    top: 50%;
   }
 
   .circle {
@@ -55,7 +61,7 @@
     }
   }
 
-  @media only screen and (min-width: 50rem) {
+  @media only screen and (min-width: 50em) {
     .container {
       margin-left: 2rem;
     }
@@ -66,7 +72,8 @@
 <div
   class="container"
   bind:this={containerRef}
-  style="--win-height: {winHeight / 2}px">
+  style="--win-height: {winHeight / 2}px"
+  class:ssr={!mounted}>
   {#each Array(sections) as _}
     <div class="circle" />
   {/each}

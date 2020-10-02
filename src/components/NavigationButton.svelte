@@ -39,7 +39,7 @@
     text-align: right;
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     a {
       font-weight: 200;
       letter-spacing: 0.4rem;

@@ -4,10 +4,12 @@
   import { quadInOut } from "svelte/easing";
   import { roundDownToMultiple, roundToNearestMultiple, progress } from "utils";
   import Chevron from "icons/Chevron.svelte";
+  import { onMount } from "svelte";
 
   export let sections: any[];
   export let winHeight: number;
   const titleOffsetMultiplier = 2;
+  let mounted = false;
 
   // get the percentage each section takes out of the total progess
   $: sectionPct = 100 / (sections.length - 1);
@@ -45,6 +47,10 @@
       progress.set((currentSection - 1) * sectionPct);
     }
   }
+
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <style type="scss">
@@ -60,6 +66,10 @@
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
     transition: font-size $fast-transition ease-in-out;
+  }
+
+  h1.ssr {
+    top: calc(50% - 11.5rem);
   }
 
   .nav {
@@ -110,13 +120,13 @@
     outline: none;
   }
 
-  @media only screen and (min-width: 25rem) {
+  @media only screen and (min-width: 25em) {
     h1 {
       left: calc(50% - 10.5rem);
     }
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     h1 {
       font-size: 5rem;
       top: calc(var(--win-height) - 18.1rem);
@@ -143,7 +153,7 @@
   }
 </style>
 
-<h1 style="--win-height: {winHeight / 2}px">
+<h1 style="--win-height: {winHeight / 2}px;" class:ssr={!mounted}>
   I'm <span class="article" class:show={sections[currentSection].prefix}>a</span>
   <span
     class="article no-space"
@@ -155,6 +165,7 @@
   <svelte:component
     this={section.component}
     position={index * winHeight + winHeight / 2}
+    {index}
     load={currentSection >= index}
     tPos={-$coords.y * titleOffsetMultiplier + winHeight * index}
     cPos={-$coords.y} />

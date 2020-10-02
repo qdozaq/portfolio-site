@@ -39,7 +39,7 @@
     justify-content: flex-end;
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
   }
 </style>
 

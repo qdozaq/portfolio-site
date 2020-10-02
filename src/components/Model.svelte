@@ -55,7 +55,7 @@
     color: #111;
   }
 
-  @media only screen and (min-width: 22rem) {
+  @media only screen and (min-width: 22em) {
     .modal {
       width: 18rem;
     }

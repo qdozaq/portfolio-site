@@ -144,7 +144,7 @@
     }
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     code {
       font-size: 1rem;
       line-height: 1.5rem;

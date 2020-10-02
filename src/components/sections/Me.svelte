@@ -9,7 +9,7 @@
     box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     img {
       width: 20rem;
       height: auto;

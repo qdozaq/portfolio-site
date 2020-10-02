@@ -18,7 +18,7 @@
     transform: translate(-50%, -50%);
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     p {
       font-size: 2rem;
       letter-spacing: 0.15rem;

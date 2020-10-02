@@ -1,12 +1,21 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   export let title: string;
   export let position: number = 0;
+  export let index: number = 0;
   export let tPos: number = 0;
   export let cPos: number = 0;
   export let load: boolean = false;
 
   // poor mans lazy load
   $: loaded = loaded || load;
+
+  let mounted = false;
+
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <style type="scss">
@@ -59,13 +68,13 @@
     will-change: transform;
   }
 
-  @media only screen and (min-width: 25rem) {
+  @media only screen and (min-width: 25em) {
     section {
       width: 25rem;
     }
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     section {
       width: 35rem;
     }
@@ -84,7 +93,10 @@
   }
 </style>
 
-<section style="top: {position}px">
+<!-- after mounting use the position calculated off of window instead of css to avoid page jumping on mobile -->
+<section
+  style="top: {mounted ? `${position}px` : `calc(100vh * ${index} + 50%)`};">
+  <!-- <section style="top: calc(100vh * {index} + 50%);"> -->
   <div class="grid">
     <div style="transform: translateY({cPos}px)" class="content">
       {#if loaded}

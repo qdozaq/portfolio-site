@@ -51,7 +51,7 @@
     transform: translate(-1rem, -4rem);
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     .content {
       height: 20rem;
     }

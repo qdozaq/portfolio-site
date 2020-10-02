@@ -37,7 +37,7 @@
     }
   }
 
-  @media only screen and (min-width: 40rem) {
+  @media only screen and (min-width: 40em) {
     main {
       margin-left: 2rem;
       margin-right: 2rem;
