@@ -11,7 +11,7 @@
     "C/C++",
     "SQL",
     "NoSQL",
-    "Back",
+    "Bash",
   ];
   const libs = [
     ["React", "https://reactjs.org/"],
@@ -20,23 +20,24 @@
     ["Svelte", "https://svelte.dev/"],
     ["Sapper", "https://sapper.svelte.dev/"],
     ["Angular", "https://angular.io/"],
+    ["Redux", "https://redux.js.org/"],
     ["Jest", "https://jestjs.io/en/"],
     ["Selenium", "https://www.selenium.dev/"],
     ["SASS", "https://sass-lang.com/"],
-    ["And many more..."],
+    ["And so many more...", undefined],
   ];
   const tools = [
     ["Git", "https://git-scm.com/"],
     ["NPM", "https://www.npmjs.com/"],
     ["Yarn", "https://classic.yarnpkg.com/en/"],
-    ["Docker", "https://www.docker.com/"],
     ["Figma", "https://www.figma.com/"],
+    ["Jira", "https://www.atlassian.com/software/jira"],
     ["Illustrator", "https://www.adobe.com/products/illustrator.html"],
     ["After Effects", "https://www.adobe.com/products/aftereffects.html"],
     ["Blender", "https://www.blender.org/"],
-    ["MacOs"],
-    ["Windows"],
-    ["Linux"],
+    ["MacOs", undefined],
+    ["Windows", undefined],
+    ["Linux", undefined],
   ];
 </script>
 
@@ -72,9 +73,18 @@
   subHeading="Senior Frontend Platform Engineer"
   detail="Mar 2019 — Current">
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu eleifend
-    elit, ut porttitor diam. Nullam porta velit neque, sit amet feugiat arcu
-    blandit sit amet. Nulla enim turpis, ornare at pulvinar sed, tempor eu enim.
+    As a platform engineer my main responsibilities consist of building out
+    tools and architecture to optimize and support the workflow of teams across
+    our core SAAS applications.
+  </p>
+  <p>
+    Because of the nature of touching so many parts of our stack I also spend
+    much of my time interfacing with teams throughout the company to collaborate
+    and problem solve engineering and design issues that may arise on a day to
+    day basis.
+  </p>
+  <p>
+    Technologies: Javascript, Typescript, React, PHP, Next.js, Make, Jenkins
   </p>
 </PageSection>
 <PageSection
@@ -82,9 +92,13 @@
   subHeading="Software Engineer"
   detail="Sep 2017 — Mar 2019">
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu eleifend
-    elit, ut porttitor diam. Nullam porta velit neque, sit amet feugiat arcu
-    blandit sit amet. Nulla enim turpis, ornare at pulvinar sed, tempor eu enim.
+    Full stack developer on several large scale customer facing applications
+    with a focus on creating easy to use and intuitive experiences to reduce
+    user frustration and call volume.
+  </p>
+  <p>
+    My work involved multiple different technologies including: javascript,
+    node, angular, ember, sass, handlebars, and a plethora of internal toolling.
   </p>
 </PageSection>
 
@@ -98,12 +112,12 @@
 </PageSection>
 <PageSection heading="Frameworks/Libraries">
   {#each libs as l}
-    <Pill text={l[0]} href={l.length > 1 && l[1]} />
+    <Pill text={l[0]} href={l[1]} />
   {/each}
 </PageSection>
 <PageSection heading="Tool/Applications">
   {#each tools as t}
-    <Pill text={t[0]} href={t.length > 1 && t[1]} />
+    <Pill text={t[0]} href={t[1]} />
   {/each}
 </PageSection>
 

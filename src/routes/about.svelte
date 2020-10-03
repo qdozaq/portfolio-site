@@ -11,9 +11,6 @@
   p {
     font-size: 1.2rem;
   }
-  div {
-    width: 7rem;
-  }
 </style>
 
 <svelte:head>
@@ -28,6 +25,6 @@
 
 <p>
   Currently working as a frontend engineer at Vimeo and doing freelance
-  animation and motion design. I'm incredibly passionate about coming art and
+  animation and motion design. I'm incredibly passionate about combining art and
   technology and finding creative solutions to weird and odd problems.
 </p>
