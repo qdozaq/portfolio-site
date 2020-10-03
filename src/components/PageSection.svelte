@@ -17,12 +17,18 @@
   h4 {
     font-weight: 100;
   }
+
+  div {
+    margin-bottom: 2rem;
+  }
 </style>
 
-<h2>{heading}</h2>
+<div>
+  <h2>{heading}</h2>
 
-<h3>{subHeading}</h3>
+  <h3>{subHeading}</h3>
 
-<h4>{detail}</h4>
+  <h4>{detail}</h4>
 
-<slot />
+  <slot />
+</div>
