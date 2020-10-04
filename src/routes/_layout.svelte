@@ -5,6 +5,9 @@
 
   export let segment: string;
 
+  // pages to exclude the media css on
+  const excludeMedia = ["projects"];
+
   $: hasLayout = segment !== undefined;
 </script>
 
@@ -70,7 +73,7 @@
       <div class="back">
         <NavigationButton href="/" point="left">Back</NavigationButton>
       </div>
-      <div class="content">
+      <div class:content={!excludeMedia.includes(segment)}>
         <slot />
       </div>
     </PageTransition>
