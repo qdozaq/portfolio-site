@@ -1,26 +1,6 @@
 <script lang="ts">
-  import { spring } from "svelte/motion";
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
-
-  const coords = spring({ xOff: 0, yOff: 0 });
-
-  let spacing = 2;
-
-  function calculateSpace(spacing: number, position: number) {
-    return `translate(${spacing * position}rem, -${spacing * position}rem)`;
-  }
-
-  function mouseOver(e: MouseEvent) {
-    console.log(e.x, e.y);
-    spacing = 3;
-    coords.set({ xOff: 1, yOff: 1 });
-  }
-
-  function mouseOut(e: MouseEvent) {
-    coords.set({ xOff: 0, yOff: 0 });
-    spacing = 2;
-  }
 </script>
 
 <style type="scss">
