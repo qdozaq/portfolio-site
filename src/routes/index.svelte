@@ -93,6 +93,7 @@
   on:keydown={handleKeydown} />
 
 <svelte:body
+  class:noscroll={true}
   on:touchmove|passive={handleDrag}
   on:touchstart={handleDrag}
   on:touchend={handleDrag} />

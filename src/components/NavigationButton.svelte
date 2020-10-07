@@ -21,12 +21,19 @@
       font-size $fast-transition ease-in-out;
 
     &:hover {
-      letter-spacing: 0.5rem;
-      transform: translateX(20%);
+      color: #40bdce;
     }
 
-    &.left:hover {
-      transform: translateX(-10%);
+    @media (hover: hover) {
+      &:hover {
+        letter-spacing: 0.5rem;
+        transform: translateX(20%);
+        color: inherit;
+      }
+
+      &.left:hover {
+        transform: translateX(-10%);
+      }
     }
   }
 

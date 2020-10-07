@@ -12,20 +12,30 @@
 </script>
 
 <script lang="ts">
+  import { fade } from "svelte/transition";
   import { send, receive } from "utils/crossfade";
+  import Pill from "components/Pill.svelte";
+  import { goto } from "@sapper/app";
 
   export let selected: Project | null;
 
-  let hover: string | undefined;
+  $: process.browser &&
+    document.body.classList.toggle("noscroll", selected !== null);
 
-  function play(key: string) {
+  let hover: number | undefined;
+
+  function play(index: number) {
     return () => {
-      hover = key;
+      hover = index;
     };
   }
 
   function pause() {
     hover = undefined;
+  }
+
+  function back() {
+    goto("/projects", { noscrol: true });
   }
 </script>
 
@@ -42,6 +52,7 @@
   img,
   video {
     width: 100%;
+    cursor: pointer;
   }
   video {
     display: none;
@@ -49,6 +60,7 @@
 
   .container {
     display: grid;
+    row-gap: 1rem;
     margin-bottom: 2rem;
   }
 
@@ -57,17 +69,49 @@
     transition: transform 0.4s cubic-bezier(0.23, 0.2, 0.09, 1);
   }
 
-  .card:hover {
-    transform: scale(1.07);
-  }
-
   .selected-container {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.9);
     width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
+  }
+
+  .selected {
+    margin: 1rem;
+  }
+
+  .selected video {
+    display: block;
+  }
+
+  .project {
+    /* maintain 16:9 aspect ratio */
+    padding-top: calc(56.25% + 3rem);
+    position: relative;
+  }
+
+  .project:hover {
+    z-index: 5;
+  }
+  .project:hover .card {
+    transform: scale(1.07);
+  }
+
+  .project-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .link {
+    display: block;
+    color: #27bcac;
+    font-style: italic;
   }
 
   @media only screen and (min-width: 40em) {
@@ -81,10 +125,21 @@
   }
 
   @media only screen and (min-width: 50em) {
+    .selected {
+      margin: 3rem 2rem;
+    }
     .container {
       grid-template-columns: 1fr 1fr;
       column-gap: 1rem;
       row-gap: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 70em) {
+    .selected {
+      width: calc(70rem - 4rem);
+      margin: auto;
+      margin-top: 3rem;
     }
   }
 </style>
@@ -97,48 +152,69 @@
 
 <div class="container">
   {#each projects as { key, title }, index}
-    {#if !selected || (selected && selected.key !== key)}
-      <div class="project" out:send={{ key }} in:receive={{ key }}>
-        <h2>{title}</h2>
-        <article class="card" on:mouseover={play(key)} on:mouseout={pause}>
-          <a href="/projects?project={key}">
-            <img alt={title} src="/{key}.jpg" class:display={hover !== key} />
-            <video
-              playsinline
-              autoplay
-              muted
-              loop
-              class:display={hover === key}>
-              <source src="/{key}.webm" type="video/webm" />
-              <source src="/{key}.mp4" type="video/mp4" />
-            </video>
-          </a>
-        </article>
-      </div>
-    {/if}
+    <div class="project" on:mouseover={play(index)} on:mouseout={pause}>
+      {#if !selected || (selected && selected.key !== key)}
+        <div class="project-inner" out:send={{ key }} in:receive={{ key }}>
+          <h2>{title}</h2>
+          <article class="card">
+            <a href="/projects?project={key}" sapper:noscroll>
+              <img
+                alt={title}
+                src="/{key}.jpg"
+                class:display={hover !== index} />
+              <video
+                playsinline
+                autoplay
+                muted
+                loop
+                class:display={hover === index}>
+                <source src="/{key}.webm" type="video/webm" />
+                <source src="/{key}.mp4" type="video/mp4" />
+              </video>
+            </a>
+          </article>
+        </div>
+      {/if}
+    </div>
   {/each}
 </div>
 
 {#if selected !== null}
-  <div class="selected-container">
-    {#await selected then { title, key }}
-      <div out:send={{ key }} in:receive={{ key }}>
-        <h2>{title}</h2>
-        <a href="/projects"> <img alt={title} src="/{key}.jpg" /> </a>
+  <div
+    class="selected-container"
+    transition:fade
+    on:click|self={() => goto('/projects', { noscroll: true })}>
+    <div class="selected">
+      {#await selected then { title, key, description, link, github, tools }}
+        <div out:send={{ key }} in:receive={{ key }}>
+          <h2>{title}</h2>
+          <a href="/projects" sapper:noscroll>
+            <video playsinline autoplay muted loop>
+              <source src="/{key}.webm" type="video/webm" />
+              <source src="/{key}.mp4" type="video/mp4" />
+            </video>
+            <!-- <img alt={title} src="/{key}.jpg" /> -->
+          </a>
+        </div>
+        <a
+          class="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={link}>{link}</a>
+        <a
+          class="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={github}>{github}</a>
+        <p>{description}</p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          malesuada lacus et sem scelerisque suscipit. Nulla id eros sit amet
-          mauris tempor scelerisque. Aenean erat quam, pellentesque eu
-          pellentesque et, semper ac dolor. Cras id diam tempor, placerat tortor
-          elementum, consequat urna. Vestibulum ut mi vel quam rutrum fermentum
-          eget vitae lorem. Sed luctus nulla ut sollicitudin sagittis. Fusce
-          ornare augue ac nisl cursus, eget pretium sapien tristique. Mauris
-          porttitor leo nec lobortis posuere. Quisque ante ex, viverra nec augue
-          ac, euismod mattis velit. Maecenas faucibus velit in gravida blandit.
-          In enim enim, lobortis at magna in, ultrices aliquam augue. Morbi
-          lacinia mattis purus, eu sagittis lorem dictum a.
+          <em>Tools used:</em>
+          <br />
+          {#each tools as [tool, toolLink]}
+            <Pill href={toolLink} text={tool} />
+          {/each}
         </p>
-      </div>
-    {/await}
+      {/await}
+    </div>
   </div>
 {/if}

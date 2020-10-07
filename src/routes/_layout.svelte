@@ -56,16 +56,6 @@
 
 <svelte:body class:body={hasLayout} />
 
-<svelte:head>
-  {#if hasLayout}
-    <style>
-      body {
-        overflow-y: auto;
-      }
-    </style>
-  {/if}
-</svelte:head>
-
 {#if hasLayout}
   <main>
     <PageTransition>

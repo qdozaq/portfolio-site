@@ -13,8 +13,18 @@ export const projects: Project[] = [
     key: "snakecubed",
     link: "https://snake-cubed.tk",
     github: "https://github.com/qdozaq/snake-cubed",
-    description: "",
-    tools: [],
+    description: `
+      A new spin on the classic game of Snake.
+    `,
+    tools: [
+      ["Typescript", ""],
+      ["React", ""],
+      ["react-three-fiber", ""],
+      ["styled-components", ""],
+      ["react-spring", ""],
+      ["react-use-gesture", ""],
+      ["Vercel", ""],
+    ],
   },
   {
     title: "Burgtown",
