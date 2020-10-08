@@ -6,7 +6,7 @@
   export let segment: string;
 
   // pages to exclude the media css on
-  const excludeMedia = ["projects"];
+  const excludeMedia = ["projects", "motion"];
 
   $: hasLayout = segment !== undefined;
 </script>
