@@ -71,6 +71,7 @@
 
   .selected-container {
     position: fixed;
+    overflow-y: auto;
     z-index: 10;
     background: rgba(0, 0, 0, 0.9);
     width: 100%;
@@ -81,6 +82,7 @@
 
   .selected {
     margin: 1rem;
+    margin-bottom: 6rem;
   }
 
   .selected video {
@@ -112,6 +114,22 @@
     display: block;
     color: #27bcac;
     font-style: italic;
+  }
+
+  .close {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
 
   @media only screen and (min-width: 40em) {
@@ -181,13 +199,19 @@
 
 {#if selected !== null}
   <div
-    class="selected-container"
+    class="selected-container scrollbar"
     transition:fade
-    on:click|self={() => goto('/projects', { noscroll: true })}>
+    on:click|self={back}>
     <div class="selected">
       {#await selected then { title, key, description, link, github, tools }}
-        <div out:send={{ key }} in:receive={{ key }}>
-          <h2>{title}</h2>
+        <div
+          style="margin-bottom: 1rem"
+          out:send={{ key }}
+          in:receive={{ key }}>
+          <div class="header" on:click={back}>
+            <h2>{title}</h2>
+            <button name="close" class="close">&#10005</button>
+          </div>
           <a href="/projects" sapper:noscroll>
             <video playsinline autoplay muted loop>
               <source src="/{key}.webm" type="video/webm" />
@@ -206,9 +230,11 @@
           target="_blank"
           rel="noopener noreferrer"
           href={github}>{github}</a>
-        <p>{description}</p>
         <p>
-          <em>Tools used:</em>
+          {@html description}
+        </p>
+        <p>
+          <em>Created with:</em>
           <br />
           {#each tools as [tool, toolLink]}
             <Pill href={toolLink} text={tool} />

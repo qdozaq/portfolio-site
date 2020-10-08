@@ -21,24 +21,6 @@
   .back {
     width: 7rem;
   }
-  :global(body) {
-    &::-webkit-scrollbar {
-      width: 1em;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #000;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #1c1c1c;
-      border-radius: 2rem;
-    }
-
-    &::-webkit-scrollbar {
-      width: 0.8rem;
-    }
-  }
 
   @media only screen and (min-width: 40em) {
     main {
@@ -53,8 +35,6 @@
     }
   }
 </style>
-
-<svelte:body class:body={hasLayout} />
 
 {#if hasLayout}
   <main>

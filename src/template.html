@@ -87,6 +87,23 @@
         overflow-y: hidden;
       }
 
+      .scrollbar::-webkit-scrollbar {
+        width: 1em;
+      }
+
+      .scrollbar::-webkit-scrollbar-track {
+        background: #000;
+      }
+
+      .scrollbar::-webkit-scrollbar-thumb {
+        background-color: #1c1c1c;
+        border-radius: 2rem;
+      }
+
+      .scrollbar::-webkit-scrollbar {
+        width: 0.8rem;
+      }
+
       body {
         overflow-x: hidden;
         font-size: 14px;
@@ -148,7 +165,7 @@
 	     the current page has one -->
     %sapper.head%
   </head>
-  <body>
+  <body class="scrollbar">
     <!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
     <div id="sapper">%sapper.html%</div>
