@@ -15,6 +15,7 @@
     letter-spacing: 0.3rem;
     font-size: 1rem;
     text-align: left;
+    color: #fff;
 
     transition: transform 0.4s cubic-bezier(0.13, 0.9, 0.17, 0.95),
       letter-spacing 0.4s cubic-bezier(0.13, 0.9, 0.17, 0.95),

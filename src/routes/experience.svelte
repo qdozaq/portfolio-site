@@ -31,6 +31,7 @@
     ["NPM", "https://www.npmjs.com/"],
     ["Yarn", "https://classic.yarnpkg.com/en/"],
     ["Figma", "https://www.figma.com/"],
+    ["Vercel", "https://vercel.com/"],
     ["Jira", "https://www.atlassian.com/software/jira"],
     ["Illustrator", "https://www.adobe.com/products/illustrator.html"],
     ["After Effects", "https://www.adobe.com/products/aftereffects.html"],

@@ -8,6 +8,7 @@
     display: inline-block;
     --primary: #27bcac;
     text-decoration: none;
+    color: #fff;
 
     margin-right: 0.25rem;
     margin-top: 0.25rem;
