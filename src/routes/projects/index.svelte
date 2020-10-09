@@ -112,8 +112,6 @@
 
   .link {
     display: block;
-    color: #27bcac;
-    font-style: italic;
   }
 
   .close {

@@ -22,7 +22,7 @@
       font-size $fast-transition ease-in-out;
 
     &:hover {
-      color: #40bdce;
+      color: var(--accent);
     }
 
     @media (hover: hover) {

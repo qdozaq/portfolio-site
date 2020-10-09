@@ -6,7 +6,6 @@
 <style>
   .pill {
     display: inline-block;
-    --primary: #27bcac;
     text-decoration: none;
     color: #fff;
 
@@ -15,7 +14,7 @@
     padding: 0.4rem;
     border-radius: 1.5rem;
 
-    background-color: var(--primary);
+    background-color: var(--accent);
     transition: transform 400ms cubic-bezier(0.27, 0.59, 0, 0.99),
       box-shadow 100ms 20ms;
   }

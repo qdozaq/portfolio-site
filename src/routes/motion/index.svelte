@@ -15,6 +15,7 @@
   import { fade } from "svelte/transition";
   import { send, receive } from "utils/crossfade";
   import { goto } from "@sapper/app";
+  import { accent } from "utils/color";
 
   export let selected: Video | null;
 
@@ -28,7 +29,7 @@
     "title=0",
     "byline=0",
     "portrait=0",
-    "color=27bcac",
+    `color=${accent}`,
   ].join("&");
 
   function play(index: number) {
@@ -126,12 +127,6 @@
     padding-bottom: 56.25%;
     height: 0;
     /* margin: 0 0.5em; */
-  }
-
-  .link {
-    display: block;
-    color: #27bcac;
-    font-style: italic;
   }
 
   .close {
