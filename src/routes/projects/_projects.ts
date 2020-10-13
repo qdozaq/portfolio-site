@@ -24,6 +24,9 @@ export const projects: Project[] = [
       Original idea was simple, what if the game <em>Snake</em> was on a 3D cube? This project was filled
       with challenges and interesting problems across design, programming and user experience
       and was a great intro to learning a really cool library.
+      <br/>
+      <br/>
+      This project was also nominated for the 2020 React OSAwards <em>"Fun Side Project of the Year"</em>.
     `,
     tools: [
       ["Typescript", "https://www.typescriptlang.org/"],
