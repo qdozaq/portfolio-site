@@ -143,6 +143,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    cursor: pointer;
   }
 
   @media only screen and (min-width: 40em) {

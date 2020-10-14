@@ -44,7 +44,7 @@
 </style>
 
 <nav>
-  <button>
+  <button aria-label="menu">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
       <circle cx="64" cy="64" r="64" />
       <rect x="24" y="58.78" width="80" height="10.43" rx="4.94" />

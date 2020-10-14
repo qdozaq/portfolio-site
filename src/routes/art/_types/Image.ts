@@ -6,6 +6,8 @@ export type ImgurObject = {
   description: string;
   tags: string[];
   thumbnail?: string;
+  width?: string;
+  height?: string;
 }
 
 export type Image = ImgurObject & {
@@ -13,6 +15,7 @@ export type Image = ImgurObject & {
   mp4?: string;
   gifv?: string;
   is_album?: false;
+  type: string;
 }
 
 export type Album = ImgurObject & {
