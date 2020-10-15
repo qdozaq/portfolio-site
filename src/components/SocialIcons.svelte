@@ -19,7 +19,7 @@
 
   .social-icons a:hover .icon {
     transform: scale(1.2);
-    fill: #40bdce;
+    fill: var(--accent);
   }
 
   .social-icons:hover .icon {

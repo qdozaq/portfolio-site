@@ -72,7 +72,7 @@
   .selected-container {
     position: fixed;
     overflow-y: auto;
-    z-index: 10;
+    z-index: 15;
     background: rgba(0, 0, 0, 0.9);
     width: 100%;
     height: 100vh;

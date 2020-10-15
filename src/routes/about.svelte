@@ -1,7 +1,3 @@
-<script>
-  import NavigationButton from "components/NavigationButton.svelte";
-</script>
-
 <style>
   h1 {
     font-size: 3rem;

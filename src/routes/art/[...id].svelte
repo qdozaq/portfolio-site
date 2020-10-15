@@ -59,6 +59,7 @@
   }
 
   .container {
+    z-index: 15;
     position: absolute;
     background: #111;
     width: 100%;
@@ -134,8 +135,8 @@
           " />
         {/if}
         <a target="_blank" rel="noopener noreferrer" href={image.link}>Full Size</a>
-        {#if data.description}
-          <p>{data.description}</p>
+        {#if image.description}
+          <p>{image.description}</p>
         {/if}
       {/each}
     {:else}

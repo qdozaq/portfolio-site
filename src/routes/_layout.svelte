@@ -39,7 +39,7 @@
 {#if hasLayout}
   <main>
     <PageTransition>
-      <Menu />
+      <Menu page={segment} />
       <div class="back">
         <NavigationButton href="/" point="left">Back</NavigationButton>
       </div>
