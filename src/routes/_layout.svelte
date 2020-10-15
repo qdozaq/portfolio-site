@@ -19,6 +19,7 @@
   }
 
   .back {
+    margin-top: 3rem;
     width: 7rem;
   }
 
@@ -39,7 +40,7 @@
 {#if hasLayout}
   <main>
     <PageTransition>
-      <Menu page={segment} />
+      <!-- <Menu page={segment} /> -->
       <div class="back">
         <NavigationButton href="/" point="left">Back</NavigationButton>
       </div>
