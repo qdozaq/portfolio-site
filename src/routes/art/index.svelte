@@ -25,8 +25,17 @@
 </script>
 
 <script lang="ts">
+  import lozad from "lozad";
   import { send, receive } from "utils/crossfade";
+  import { onMount } from "svelte";
   export let images: Array<Image | Album>;
+
+  onMount(() => {
+    setTimeout(() => {
+      const observer = lozad();
+      observer.observe();
+    }, 1000);
+  });
 </script>
 
 <style>
@@ -36,9 +45,22 @@
   }
 
   img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    opacity: 1;
+
+    box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s cubic-bezier(0.23, 0.2, 0.09, 1), opacity 1s;
+  }
+
+  img.invisible {
+    opacity: 0;
+  }
+
+  a {
     width: 8rem;
     height: 8rem;
-    object-fit: cover;
   }
 
   .grid {
@@ -49,17 +71,13 @@
     column-gap: 0.5rem;
     row-gap: 0.5rem;
   }
-  img {
-    box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s cubic-bezier(0.23, 0.2, 0.09, 1);
-  }
 
   img:hover {
     transform: scale(1.07);
   }
 
   @media only screen and (min-width: 22.5em) {
-    img {
+    a {
       width: 10rem;
       height: 10rem;
     }
@@ -69,7 +87,7 @@
   }
 
   @media only screen and (min-width: 40em) {
-    img {
+    a {
       width: 12rem;
       height: 12rem;
     }
@@ -79,7 +97,7 @@
   }
 
   @media only screen and (min-width: 70em) {
-    img {
+    a {
       width: 20rem;
       height: 20rem;
     }
@@ -99,12 +117,14 @@
   {#each images as img}
     <a sapper:noscroll href="/art/{img.is_album ? 'a/' : ''}{img.id}">
       <img
+        class="lozad invisible"
         alt={img.title}
         out:send={{ key: img.id }}
         in:receive={{ key: img.id }}
-        src="https://i.imgur.com/{img.thumbnail}t.jpg"
+        data-toggle-class="invisible"
+        data-src="https://i.imgur.com/{img.thumbnail}t.jpg"
         sizes="(min-width: 40em) and (max-width:70em) 12rem, (min-width: 70em) 25rem,  8rem"
-        srcset="
+        data-srcset="
       https://i.imgur.com/{img.thumbnail}t.jpg 160w,
       https://i.imgur.com/{img.thumbnail}m.jpg 320w,
       https://i.imgur.com/{img.thumbnail}l.jpg 640w" />
