@@ -84,6 +84,7 @@
 
 <svelte:head>
   <title>I'm Paul Mendoza</title>
+  <meta name="description" content="Paul Mendoza's Portfolio Site" />
 </svelte:head>
 
 <svelte:window

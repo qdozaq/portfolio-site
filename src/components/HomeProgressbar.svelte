@@ -208,7 +208,10 @@
   <div class="circle glow" style="transform:translateY({$coords.y}px);" />
 </div>
 
-<button class="menu-button" on:click={() => (showMenu = !showMenu)}>
+<button
+  aria-label="menu"
+  class="menu-button"
+  on:click={() => (showMenu = !showMenu)}>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
     <rect x="24" y="58.78" width="80" height="10.43" rx="4.94" />
     <rect x="24" y="82.26" width="80" height="10.43" rx="4.94" />

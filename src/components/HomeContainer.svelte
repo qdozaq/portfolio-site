@@ -174,7 +174,12 @@
 {/each}
 
 {#if currentSection > 0}
-  <button class="nav back" name="back" on:click={onBack} transition:fade>
+  <button
+    aria-label="previous section"
+    class="nav back"
+    name="back"
+    on:click={onBack}
+    transition:fade>
     <span class="chev" tabindex="-1">
       <Chevron rotation={-90} />
     </span>
@@ -183,6 +188,7 @@
 
 {#if currentSection < sections.length - 1}
   <button
+    aria-label="next section"
     class="nav continue"
     name="continue"
     on:click={onContinue}

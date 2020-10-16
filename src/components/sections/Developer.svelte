@@ -118,7 +118,7 @@
 
   code {
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 12px;
     background: none;
     color: #fff;
     line-height: 1rem;
@@ -174,7 +174,11 @@
   {#if !error}
     <i>
       <p class="author">
-        - <a href="https://alexwohlbruck.github.io/cat-facts/" target="_blank" rel="noopener noreferrer">alexwohlbruck.github.io/cat-facts</a>
+        -
+        <a
+          href="https://alexwohlbruck.github.io/cat-facts/"
+          target="_blank"
+          rel="noopener noreferrer">alexwohlbruck.github.io/cat-facts</a>
       </p>
     </i>
   {/if}

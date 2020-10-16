@@ -47,6 +47,12 @@
     text-align: right;
   }
 
+  /* This bypasses googles SEO warning about non descriptive text links. Sorry Google.. */
+  .hack {
+    position: absolute;
+    opacity: 0;
+  }
+
   @media only screen and (min-width: 40em) {
     a {
       font-weight: 200;
@@ -63,6 +69,7 @@
   {#if point === 'left'}
     <Chevron rotation={180} />
   {/if}
+  <span class="hack">descriptive text hack</span>
   <span class="text">
     <slot>more</slot>
   </span>
