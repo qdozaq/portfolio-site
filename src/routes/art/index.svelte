@@ -92,6 +92,9 @@
 
 <svelte:head>
   <title>Art</title>
+  <meta
+    name="description"
+    content="A collection of my art work and experiments" />
 </svelte:head>
 
 <h1>Art</h1>

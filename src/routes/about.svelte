@@ -11,6 +11,9 @@
 
 <svelte:head>
   <title>About</title>
+  <meta
+    name="description"
+    content="About page. About me. Paul Mendoza. Which is me." />
 </svelte:head>
 
 <h1>About</h1>

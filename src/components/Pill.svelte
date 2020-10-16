@@ -28,4 +28,6 @@
   }
 </style>
 
-<a class="pill" {href} target="_blank" rel="noopener noreferrer">{text}</a>
+{#if href}
+  <a class="pill" {href} target="_blank" rel="noopener noreferrer">{text}</a>
+{:else}<span class="pill">{text}</span>{/if}

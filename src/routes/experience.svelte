@@ -65,6 +65,9 @@
 
 <svelte:head>
   <title>Experience</title>
+  <meta
+    name="description"
+    content="Paul Mendoza's developer experience / resume" />
 </svelte:head>
 
 <h1>Experience</h1>
@@ -84,9 +87,7 @@
     and problem solve engineering and design issues that may arise on a day to
     day basis.
   </p>
-  <p>
-    Technologies: Javascript, Typescript, React, PHP, Next.js, Make, Jenkins
-  </p>
+  <p>Technologies: Javascript, Typescript, React, PHP, Next.js</p>
 </PageSection>
 <PageSection
   heading="Fidelity"

@@ -99,6 +99,11 @@
   }
 </style>
 
+<svelte:head>
+  <title>{data.title}</title>
+  <meta name="description" content="{data.title} showcase" />
+</svelte:head>
+
 <div class="container" transition:fade on:click|self={back}>
   <div class="content">
     <div class="header" on:click={back}>
@@ -123,7 +128,7 @@
           </video>
         {:else}
           <img
-            alt={image.title}
+            alt="i-{index}"
             width={image.width}
             height={image.height}
             out:send={index === 0 && { key: data.id }}

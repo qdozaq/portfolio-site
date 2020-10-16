@@ -178,6 +178,7 @@
 
 <svelte:head>
   <title>Motion Work</title>
+  <meta name="description" content="Collection of my motion graphics work" />
 </svelte:head>
 
 <h1>Motion Work</h1>

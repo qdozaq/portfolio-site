@@ -163,6 +163,7 @@
 
 <svelte:head>
   <title>Projects</title>
+  <meta name="description" content="A collection of my programming projects" />
 </svelte:head>
 
 <h1>Projects</h1>
@@ -216,7 +217,6 @@
               <source src="/{key}.webm" type="video/webm" />
               <source src="/{key}.mp4" type="video/mp4" />
             </video>
-            <!-- <img alt={title} src="/{key}.jpg" /> -->
           </a>
         </div>
         <a
