@@ -5,8 +5,9 @@
   import { roundDownToMultiple, roundToNearestMultiple, progress } from "utils";
   import Chevron from "icons/Chevron.svelte";
   import { onMount } from "svelte";
+  import type { Section } from "./sections";
 
-  export let sections: any[];
+  export let sections: Section[];
   export let winHeight: number;
   const titleOffsetMultiplier = 2;
   let mounted = false;
@@ -154,7 +155,8 @@
 </style>
 
 <h1 style="--win-height: {winHeight / 2}px;" class:ssr={!mounted}>
-  I'm <span class="article" class:show={sections[currentSection].prefix}>a</span>
+  I'm
+  <span class="article" class:show={sections[currentSection].prefix}>a</span>
   <span
     class="article no-space"
     class:show={sections[currentSection].prefix === 'an'}>

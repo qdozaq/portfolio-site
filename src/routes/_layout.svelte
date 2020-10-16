@@ -9,6 +9,7 @@
   const excludeMedia = ["projects", "motion", "art"];
 
   $: hasLayout = segment !== undefined;
+  $: process.browser && document.body.classList.toggle("noscroll", !hasLayout);
 </script>
 
 <style type="scss">
@@ -19,7 +20,7 @@
   }
 
   .back {
-    margin-top: 3rem;
+    padding-top: 3rem;
     width: 7rem;
   }
 
