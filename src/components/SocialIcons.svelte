@@ -45,7 +45,7 @@
 
 <section class="container social">
   <div class="social-icons">
-    <a title="email" href="mailto:itspaulmendoza@gmail.com">
+    <a title="email" href="mailto:paul@doza.design">
       <svg
         class="icon"
         xmlns="http://www.w3.org/2000/svg"
