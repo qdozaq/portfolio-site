@@ -40,7 +40,7 @@
     z-index: 2;
     font-weight: 500;
     font-size: 3rem;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 3px 4px 0px rgba(0, 0, 0, 0.4);
     grid-row: 1;
     grid-column: 1 / 3;
     align-self: start;
