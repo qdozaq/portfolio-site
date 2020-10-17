@@ -1,73 +1,105 @@
 <script lang="ts">
-  import SocialIcons from "../components/SocialIcons.svelte";
-</script>
+  import PageTransition from "components/PageTransition.svelte";
+  import HomeContainer from "components/HomeContainer.svelte";
+  import Progressbar from "components/HomeProgressbar.svelte";
+  import sections from "components/sections";
+  import { getWindowHeight, progress, scrollEnabled, throttle } from "utils";
+  import { onMount } from "svelte";
 
-<style>
-  main {
-    background-color: #111;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: Tahoma, sans-serif;
-    overflow-x: hidden;
+  let winHeight = 0;
+  let prevDrag = 0;
+  let prevDirection = 0;
+
+  function handleResize() {
+    winHeight = getWindowHeight();
+    window.scrollTo({ top: 0 });
   }
 
-  h1 {
-    color: #eee;
-    font-weight: bold;
+  function handleScroll(e: WheelEvent) {
+    if (!$scrollEnabled) return;
+
+    const direction = Math.sign(e.deltaY);
+    if (direction !== prevDirection) throttledScroll.cancel();
+    prevDirection = direction;
+
+    throttledScroll(e, direction);
   }
 
-  #demo-reel {
-    width: 100vw;
-    margin-bottom: 1rem;
+  function updateProgress(dy: number) {
+    progress.update((prog) => {
+      const p = prog + dy;
+      return p > 100 ? 100 : p < 0 ? 0 : p;
+    });
   }
 
-  @media (min-width: 768px) {
-    #demo-reel {
-      width: 768px;
+  // should offer consitent scroll across different browsers and devices
+  const throttledScroll = throttle(function scroll(
+    e: WheelEvent,
+    direction: number
+  ) {
+    updateProgress(3 * direction);
+  },
+  100);
+
+  function handleDrag(e: TouchEvent) {
+    if (!$scrollEnabled) return;
+
+    const y = e?.targetTouches[0]?.screenY ?? 0;
+    switch (e.type) {
+      case "touchstart":
+        prevDrag = y;
+        return;
+      case "touchend":
+        prevDrag = 0;
+        return;
     }
+
+    const dy = prevDrag - y;
+
+    updateProgress(dy / 18);
+
+    prevDrag = y;
   }
 
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  function handleKeydown(e: KeyboardEvent) {
+    let dy = 0;
+    switch (e.key.toUpperCase()) {
+      case "ARROWUP":
+        dy = -5;
+        break;
+      case "ARROWDOWN":
+        dy = 5;
+        break;
+      default:
+        return;
+    }
+
+    updateProgress(dy);
   }
 
-  .iframe-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    margin: 0 0.5em;
-  }
-
-  .iframe-wrapper > iframe {
-    border: none;
-  }
-</style>
+  onMount(() => {
+    winHeight = getWindowHeight();
+  });
+</script>
 
 <svelte:head>
   <title>I'm Paul Mendoza</title>
+  <meta name="description" content="Paul Mendoza's Portfolio Site" />
 </svelte:head>
 
-<main>
-  <section id="demo-reel">
-    <div class="iframe-wrapper">
-      <iframe
-        title="demo-reel"
-        src="https://player.vimeo.com/video/308906486?title=0&byline=0&portrait=0"
-        allowfullscreen />
-    </div>
-  </section>
-  <section>
-    <h1>I'm Paul Mendoza</h1>
-    <SocialIcons />
-  </section>
-</main>
+<svelte:window
+  on:wheel|passive={handleScroll}
+  on:resize|passive={handleResize}
+  on:orientationchange|passive={handleResize}
+  on:keydown={handleKeydown} />
+
+<svelte:body
+  class:noscroll={true}
+  on:touchmove|passive={handleDrag}
+  on:touchstart={handleDrag}
+  on:touchend={handleDrag} />
+
+<PageTransition direction="left">
+  <HomeContainer {sections} {winHeight} />
+  <Progressbar {sections} {winHeight} />
+</PageTransition>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-131385998-1"
     ></script>
@@ -14,15 +14,146 @@
       gtag("js", new Date());
 
       gtag("config", "UA-131385998-1");
-    </script>
+    </script> -->
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="theme-color" content="#333333" />
 
     %sapper.base%
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'%20%E2%80%94%21%40%23%24%25%5E%26%2A%28%29_%2B%3A%22%7D%7B%5B%5D%60~%0A1234567890%3F"
+      rel="stylesheet"
+    /> -->
 
-    <link rel="stylesheet" href="global.css" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com/l/font?kit=KFOkCnqEu92Fr1MmgWxKMW43CuDQtqxrXVycKHM0UwXqadI5GH6rkTXh1h1knCtzlTw_pI2LCb2kDHBqYpjQgsFKylncVy7M8R5xgWZ9ZwKM9_aG3rA3RJVAGVKrdeS-gjfE0uy6ogCY9w&skey=5473b731ec7fc9c1&v=v20"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmSU5vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=11ce8ad5f54705ca&v=v20"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com/l/font?kit=KFOmCnqEu92Fr1Me4H4WCRccCOLWsK5pU1KeKmkuUQfsb9A7FnCpl0-f1B9imilxmzI9pouNC7-6EnJoZJ7SgM9EyFvbUizyzxxzh2B_ZQyC9fSA2LI1WotCG1Std-awjDXG1eklXHY&skey=a0a0114a1dcab3ac&v=v20"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=ee881451c540fdec&v=v20"
+    />
+    <!-- <link rel="preconnect" href="https://www.google-analytics.com" /> -->
+
+    <style>
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 100;
+        font-display: swap;
+        src: local("Roboto Thin"), local("Roboto-Thin"),
+          url(https://fonts.gstatic.com/l/font?kit=KFOkCnqEu92Fr1MmgWxKMW43CuDQtqxrXVycKHM0UwXqadI5GH6rkTXh1h1knCtzlTw_pI2LCb2kDHBqYpjQgsFKylncVy7M8R5xgWZ9ZwKM9_aG3rA3RJVAGVKrdeS-gjfE0uy6ogCY9w&skey=5473b731ec7fc9c1&v=v20)
+            format("woff2");
+      }
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local("Roboto Light"), local("Roboto-Light"),
+          url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmSU5vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=11ce8ad5f54705ca&v=v20)
+            format("woff2");
+      }
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local("Roboto"), local("Roboto-Regular"),
+          url(https://fonts.gstatic.com/l/font?kit=KFOmCnqEu92Fr1Me4H4WCRccCOLWsK5pU1KeKmkuUQfsb9A7FnCpl0-f1B9imilxmzI9pouNC7-6EnJoZJ7SgM9EyFvbUizyzxxzh2B_ZQyC9fSA2LI1WotCG1Std-awjDXG1eklXHY&skey=a0a0114a1dcab3ac&v=v20)
+            format("woff2");
+      }
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local("Roboto Medium"), local("Roboto-Medium"),
+          url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=ee881451c540fdec&v=v20)
+            format("woff2");
+      }
+    </style>
+    <style>
+      :root {
+        --accent: #27bcac;
+        --reaction-curve: cubic-bezier(0.27, 0.59, 0, 0.99);
+      }
+      .noscroll {
+        overflow-y: hidden;
+        touch-action: none;
+      }
+
+      .scrollbar::-webkit-scrollbar {
+        width: 1em;
+      }
+
+      .scrollbar::-webkit-scrollbar-track {
+        background: #000;
+      }
+
+      .scrollbar::-webkit-scrollbar-thumb {
+        background-color: #1c1c1c;
+        border-radius: 2rem;
+      }
+
+      .scrollbar::-webkit-scrollbar {
+        width: 0.8rem;
+      }
+
+      body {
+        overflow-x: hidden;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+        background-color: #111;
+        font-family: Roboto, sans-serif;
+        color: #fff;
+        height: 100vh;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0 0 0.5em 0;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      a {
+        color: var(--accent);
+        font-style: italic;
+      }
+
+      code {
+        font-family: Fira Sans, monospace;
+        font-size: calc(1em - 2px);
+        color: #555;
+        background-color: #f0f0f0;
+        padding: 0.2em 0.4em;
+        border-radius: 2px;
+      }
+
+      @media (min-width: 400px) {
+        body {
+          font-size: 16px;
+        }
+      }
+    </style>
     <!-- <link rel="manifest" href="manifest.json" crossorigin="use-credentials" /> -->
     <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -40,7 +171,7 @@
 	     the current page has one -->
     %sapper.head%
   </head>
-  <body>
+  <body class="scrollbar">
     <!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
     <div id="sapper">%sapper.html%</div>
