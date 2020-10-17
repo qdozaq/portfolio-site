@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
   // import type { Preload } from "@sapper/common";
   import type { Image, Album } from "./_types/Image";
-  export const preload = async function ({ params }) {
+  export const preload = async function ({ params }, session) {
+    const { IMGUR_CLIENT_ID } = session;
     const [v1, v2] = params.id;
     const isAlbum = v1 === "a";
 
@@ -10,7 +11,7 @@
     }`;
 
     const res = await this.fetch(endpoint, {
-      headers: { Authorization: "Client-ID 560d63208b6627b" },
+      headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` },
     });
 
     if (res.status !== 200) {

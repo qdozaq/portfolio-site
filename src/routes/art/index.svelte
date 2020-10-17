@@ -2,10 +2,12 @@
   // import type { Preload } from "@sapper/common";
   import type { ImgurResponse, Image, Album } from "./_types/Image";
 
-  export const preload = async function (this) {
+  export const preload = async function (page, session) {
+    const { IMGUR_CLIENT_ID } = session;
+
     const res = await this.fetch(
       "https://api.imgur.com/3/account/qdozaq/submissions/0/",
-      { headers: { Authorization: "Client-ID 560d63208b6627b" } }
+      { headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` } }
     );
 
     if (res.status !== 200) {
