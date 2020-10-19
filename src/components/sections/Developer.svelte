@@ -165,7 +165,9 @@
     </div>
   </button>
   <span slot="action" class="actions">
-    <NavigationButton href="/experience">experience</NavigationButton>
+    <span style="margin-top:.5rem">
+      <NavigationButton href="/experience">experience</NavigationButton>
+    </span>
     <NavigationButton href="/projects">projects</NavigationButton>
   </span>
 </Section>
