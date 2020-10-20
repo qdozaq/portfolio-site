@@ -3,7 +3,13 @@
   import HomeContainer from "components/HomeContainer.svelte";
   import Progressbar from "components/HomeProgressbar.svelte";
   import sections from "components/sections";
-  import { getWindowHeight, progress, scrollEnabled, throttle } from "utils";
+  import {
+    getWindowHeight,
+    getDocHeight,
+    progress,
+    scrollEnabled,
+    throttle,
+  } from "utils";
   import { onMount } from "svelte";
 
   let winHeight = 0;
@@ -11,7 +17,7 @@
   let prevDirection = 0;
 
   function handleResize() {
-    winHeight = getWindowHeight();
+    winHeight = getDocHeight();
     window.scrollTo({ top: 0 });
   }
 
@@ -78,7 +84,7 @@
   }
 
   onMount(() => {
-    winHeight = getWindowHeight();
+    winHeight = getDocHeight();
   });
 </script>
 
