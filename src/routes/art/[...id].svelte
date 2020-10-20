@@ -103,6 +103,7 @@
 <svelte:head>
   <title>{data.title}</title>
   <meta name="description" content="{data.title} showcase" />
+  <meta name="robots" content="noindex" />
 </svelte:head>
 
 <div class="container" transition:fade on:click|self={back}>
