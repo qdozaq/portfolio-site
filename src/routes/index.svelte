@@ -17,7 +17,7 @@
   let prevDirection = 0;
 
   function handleResize() {
-    winHeight = getDocHeight();
+    winHeight = getWindowHeight();
     window.scrollTo({ top: 0 });
   }
 
@@ -84,7 +84,7 @@
   }
 
   onMount(() => {
-    winHeight = getDocHeight();
+    winHeight = getWindowHeight() || getDocHeight();
   });
 </script>
 
