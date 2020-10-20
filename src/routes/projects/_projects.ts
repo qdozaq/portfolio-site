@@ -70,13 +70,13 @@ export const projects: Project[] = [
       <br>
       Besides creating a centralized hub for everything me I really wanted to
       push myself to create a site that utilizes all my skills both as a developer and motion designer.
-      I also wanted there to be no performance drawback to my design choices with my goal being to score
-      as high as possible on lighthouse and pagespeed insights tests.
+      This site focuses on strong typography, seemless motion, and performance with near perfect lighthouse scores."
     `,
     tools: [
       ["Typescript", "https://www.typescriptlang.org/"],
       ["Svelte", "https://svelte.dev/"],
       ["Sapper", "https://sapper.svelte.dev/"],
+      ["Vercel", "https://vercel.com"],
     ],
   },
 ];
