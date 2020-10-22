@@ -71,7 +71,7 @@ export const projects: Project[] = [
       <br>
       Besides creating a centralized hub for everything me I really wanted to
       push myself to create a site that utilizes all my skills both as a developer and motion designer.
-      This site focuses on strong typography, seemless motion, and performance with near perfect lighthouse scores."
+      This site focuses on strong typography, seemless motion, and performance with near perfect lighthouse scores.
     `,
     tools: [
       ["Typescript", "https://www.typescriptlang.org/"],

@@ -90,7 +90,7 @@
   <p>Technologies: Javascript, Typescript, React, PHP, Next.js</p>
 </PageSection>
 <PageSection
-  heading="Fidelity"
+  heading="Fidelity Investments"
   subHeading="Software Engineer"
   detail="Sep 2017 — Mar 2019">
   <p>
