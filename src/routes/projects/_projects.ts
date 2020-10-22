@@ -5,6 +5,7 @@ export type Project = {
   key: string;
   github: string;
   tools: [string, string | undefined][];
+  novideo?: boolean;
 };
 
 export const projects: Project[] = [
@@ -79,6 +80,29 @@ export const projects: Project[] = [
       ["Vercel", "https://vercel.com"],
     ],
   },
+  {
+    title: "MutualAid.World",
+    key: 'mutualaid',
+    link: 'https://mutualaid.world/',
+    novideo: true,
+    github: 'https://github.com/factn/resilience-app',
+    description: `
+      This is an open source project that came about during the first few months of the COVID-19 quarantine
+      focusing on helping local mutualaid groups connect volunteers with people who are in need of assistance.
+      <br>
+      <br>
+
+      During the roughly 2-3 month period I was on the project I was an active contributor and tech lead.
+      My role involved helping the team setup and architect the app as well as organizing / overseeing
+      work across the many developers of varying skill levels coming in and out of the project.
+    `,
+    tools: [
+      ["Firebase", "https://firebase.google.com/"],
+      ["React", "https://reactjs.org/"],
+      ["Typescript", "https://www.typescriptlang.org/"],
+      ["Material UI", "https://material-ui.com/"]
+    ],
+  }
 ];
 
 // map each project key to it's index

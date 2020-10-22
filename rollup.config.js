@@ -4,6 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
 import alias from "@rollup/plugin-alias";
+import strip from '@rollup/plugin-strip';
 import typescript from "@rollup/plugin-typescript";
 import autoPreprocess from "svelte-preprocess";
 import { terser } from "rollup-plugin-terser";
@@ -55,7 +56,7 @@ export default {
       typescript({
         sourceMap: !!sourcemap,
       }),
-
+      !dev && strip(),
       babel({
         extensions: [".js", ".mjs", ".html", ".svelte"],
         babelHelpers: "runtime",
@@ -119,6 +120,7 @@ export default {
       typescript({
         sourceMap: !!sourcemap,
       }),
+      !dev && strip(),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require("module").builtinModules ||

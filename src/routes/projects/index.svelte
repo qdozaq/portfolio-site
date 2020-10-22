@@ -169,7 +169,7 @@
 <h1>Projects</h1>
 
 <div class="container">
-  {#each projects as { key, title }, index}
+  {#each projects as { key, title, novideo }, index}
     <div class="project" on:mouseover={play(index)} on:mouseout={pause}>
       {#if !selected || (selected && selected.key !== key)}
         <div class="project-inner" out:send={{ key }} in:receive={{ key }}>
@@ -179,16 +179,18 @@
               <img
                 alt={title}
                 src="/{key}.jpg"
-                class:display={hover !== index} />
-              <video
-                playsinline
-                autoplay
-                muted
-                loop
-                class:display={hover === index}>
-                <source src="/{key}.webm" type="video/webm" />
-                <source src="/{key}.mp4" type="video/mp4" />
-              </video>
+                class:display={novideo || hover !== index} />
+              {#if !novideo}
+                <video
+                  playsinline
+                  autoplay
+                  muted
+                  loop
+                  class:display={hover === index}>
+                  <source src="/{key}.webm" type="video/webm" />
+                  <source src="/{key}.mp4" type="video/mp4" />
+                </video>
+              {/if}
             </a>
           </article>
         </div>
@@ -203,7 +205,7 @@
     transition:fade
     on:click|self={back}>
     <div class="selected">
-      {#await selected then { title, key, description, link, github, tools }}
+      {#await selected then { title, key, description, link, github, tools, novideo }}
         <div
           style="margin-bottom: 1rem"
           out:send={{ key }}
@@ -213,7 +215,7 @@
             <button name="close" class="close">&#10005</button>
           </div>
           <a href="/projects" sapper:noscroll>
-            <video playsinline autoplay muted loop>
+            <video playsinline autoplay muted loop poster="/{key}.jpg">
               <source src="/{key}.webm" type="video/webm" />
               <source src="/{key}.mp4" type="video/mp4" />
             </video>
