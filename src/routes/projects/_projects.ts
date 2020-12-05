@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     title: "Burgtown",
     key: "burgtown",
-    link: "https://burgtown.tk",
+    link: "https://burg-town.vercel.app/",
     github: "https://github.com/qdozaq/BurgTown",
     description: `
       Burgtown is a little web game I created back in 2017 after graduating
