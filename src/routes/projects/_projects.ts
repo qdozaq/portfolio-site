@@ -3,12 +3,35 @@ export type Project = {
   description: string;
   link: string;
   key: string;
-  github: string;
+  github?: string;
   tools: [string, string | undefined][];
   novideo?: boolean;
 };
 
 export const projects: Project[] = [
+  {
+    title: "KilledByLease",
+    key: "killedbylease",
+    link: "https://killedbylease.com/",
+    description: `
+    Eccommerce site for the clothing brand <em><b>KilledByLease</b></em>.
+    <br/>
+    <br/>
+    One of my larger freelance solo projects, which also marks my first foray into integrating with a headless ecommerce solution.
+    <br/>
+    Worked closely with the brand over the course of several weeks to design and develop a site that fit their core message and values.
+    `,
+    tools: [
+      ["Typescript", "https://www.typescriptlang.org/"],
+      ["React", "https://reactjs.org/"],
+      ["Next.js", "https://nextjs.org/"],
+      ["WebGL", "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API"],
+      ["Tailwindcss", "https://tailwindcss.com/"],
+      ["Emotion", "https://emotion.sh/docs/introduction"],
+      ["BigCommerce", "https://www.bigcommerce.com/"],
+      ["Vercel", "https://vercel.com"],
+    ],
+  },
   {
     title: "Snake Cubed",
     key: "snakecubed",
@@ -82,10 +105,10 @@ export const projects: Project[] = [
   },
   {
     title: "MutualAid.World",
-    key: 'mutualaid',
-    link: 'https://mutualaid.world/',
+    key: "mutualaid",
+    link: "https://mutualaid.world/",
     novideo: true,
-    github: 'https://github.com/factn/resilience-app',
+    github: "https://github.com/factn/resilience-app",
     description: `
       This is an open source project that came about during the first few months of the COVID-19 quarantine
       focusing on helping local mutualaid groups connect volunteers with people who are in need of assistance.
@@ -100,9 +123,9 @@ export const projects: Project[] = [
       ["Firebase", "https://firebase.google.com/"],
       ["React", "https://reactjs.org/"],
       ["Typescript", "https://www.typescriptlang.org/"],
-      ["Material UI", "https://material-ui.com/"]
+      ["Material UI", "https://material-ui.com/"],
     ],
-  }
+  },
 ];
 
 // map each project key to it's index

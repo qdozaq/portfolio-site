@@ -1,43 +1,133 @@
 <script context="module" lang="ts">
-  import { projects, projectMap } from "./_projects";
-  import type { Project } from "./_projects";
+  import { projects, projectMap } from "./_projects"
+  import type { Project } from "./_projects"
   export async function preload(page, session) {
-    const { project } = page.query;
+    const { project } = page.query
     if (project) {
-      const index = projectMap[project];
-      return { selected: projects[index] };
+      const index = projectMap[project]
+      return { selected: projects[index] }
     }
-    return { selected: null };
+    return { selected: null }
   }
 </script>
 
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import { send, receive } from "utils/crossfade";
-  import Pill from "components/Pill.svelte";
-  import { goto } from "@sapper/app";
+  import { fade } from "svelte/transition"
+  import { send, receive } from "utils/crossfade"
+  import Pill from "components/Pill.svelte"
+  import { goto } from "@sapper/app"
 
-  export let selected: Project | null;
+  export let selected: Project | null
 
   $: process.browser &&
-    document.body.classList.toggle("noscroll", selected !== null);
+    document.body.classList.toggle("noscroll", selected !== null)
 
-  let hover: number | undefined;
+  let hover: number | undefined
 
   function play(index: number) {
     return () => {
-      hover = index;
-    };
+      hover = index
+    }
   }
 
   function pause() {
-    hover = undefined;
+    hover = undefined
   }
 
   function back() {
-    goto("/projects", { noscrol: true });
+    goto("/projects", { noscrol: true })
   }
 </script>
+
+<svelte:head>
+  <title>Projects</title>
+  <meta name="description" content="A collection of my programming projects" />
+</svelte:head>
+
+<h1>Projects</h1>
+
+<div class="container">
+  {#each projects as { key, title, novideo }, index}
+    <div class="project" on:mouseover={play(index)} on:mouseout={pause}>
+      {#if !selected || (selected && selected.key !== key)}
+        <div class="project-inner" out:send={{ key }} in:receive={{ key }}>
+          <h2>{title}</h2>
+          <article class="card">
+            <a href="/projects?project={key}" sapper:noscroll>
+              <img
+                alt={title}
+                src="/{key}.jpg"
+                class:display={novideo || hover !== index}
+              />
+              {#if !novideo}
+                <video
+                  playsinline
+                  autoplay
+                  muted
+                  loop
+                  class:display={hover === index}
+                >
+                  <source src="/{key}.webm" type="video/webm" />
+                  <source src="/{key}.mp4" type="video/mp4" />
+                </video>
+              {/if}
+            </a>
+          </article>
+        </div>
+      {/if}
+    </div>
+  {/each}
+</div>
+
+{#if selected !== null}
+  <div
+    class="selected-container scrollbar"
+    transition:fade
+    on:click|self={back}
+  >
+    <div class="selected">
+      {#await selected then { title, key, description, link, github, tools, novideo }}
+        <div
+          style="margin-bottom: 1rem"
+          out:send={{ key }}
+          in:receive={{ key }}
+        >
+          <div class="header" on:click={back}>
+            <h2>{title}</h2>
+            <button name="close" class="close">&#10005</button>
+          </div>
+          <a href="/projects" sapper:noscroll>
+            <video playsinline autoplay muted loop poster="/{key}.jpg">
+              <source src="/{key}.webm" type="video/webm" />
+              <source src="/{key}.mp4" type="video/mp4" />
+            </video>
+          </a>
+        </div>
+        <a class="link" target="_blank" rel="noopener noreferrer" href={link}
+          >{link}</a
+        >
+        {#if github !== undefined}
+          <a
+            class="link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={github}>{github}</a
+          >
+        {/if}
+        <p>
+          {@html description}
+        </p>
+        <p>
+          <em>Created with:</em>
+          <br />
+          {#each tools as [tool, toolLink]}
+            <Pill href={toolLink} text={tool} />
+          {/each}
+        </p>
+      {/await}
+    </div>
+  </div>
+{/if}
 
 <style>
   h1 {
@@ -160,88 +250,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>Projects</title>
-  <meta name="description" content="A collection of my programming projects" />
-</svelte:head>
-
-<h1>Projects</h1>
-
-<div class="container">
-  {#each projects as { key, title, novideo }, index}
-    <div class="project" on:mouseover={play(index)} on:mouseout={pause}>
-      {#if !selected || (selected && selected.key !== key)}
-        <div class="project-inner" out:send={{ key }} in:receive={{ key }}>
-          <h2>{title}</h2>
-          <article class="card">
-            <a href="/projects?project={key}" sapper:noscroll>
-              <img
-                alt={title}
-                src="/{key}.jpg"
-                class:display={novideo || hover !== index} />
-              {#if !novideo}
-                <video
-                  playsinline
-                  autoplay
-                  muted
-                  loop
-                  class:display={hover === index}>
-                  <source src="/{key}.webm" type="video/webm" />
-                  <source src="/{key}.mp4" type="video/mp4" />
-                </video>
-              {/if}
-            </a>
-          </article>
-        </div>
-      {/if}
-    </div>
-  {/each}
-</div>
-
-{#if selected !== null}
-  <div
-    class="selected-container scrollbar"
-    transition:fade
-    on:click|self={back}>
-    <div class="selected">
-      {#await selected then { title, key, description, link, github, tools, novideo }}
-        <div
-          style="margin-bottom: 1rem"
-          out:send={{ key }}
-          in:receive={{ key }}>
-          <div class="header" on:click={back}>
-            <h2>{title}</h2>
-            <button name="close" class="close">&#10005</button>
-          </div>
-          <a href="/projects" sapper:noscroll>
-            <video playsinline autoplay muted loop poster="/{key}.jpg">
-              <source src="/{key}.webm" type="video/webm" />
-              <source src="/{key}.mp4" type="video/mp4" />
-            </video>
-          </a>
-        </div>
-        <a
-          class="link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={link}>{link}</a>
-        <a
-          class="link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={github}>{github}</a>
-        <p>
-          {@html description}
-        </p>
-        <p>
-          <em>Created with:</em>
-          <br />
-          {#each tools as [tool, toolLink]}
-            <Pill href={toolLink} text={tool} />
-          {/each}
-        </p>
-      {/await}
-    </div>
-  </div>
-{/if}
