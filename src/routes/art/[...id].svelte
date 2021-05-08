@@ -78,6 +78,7 @@
   .content {
     margin: 1rem;
     margin-bottom: 6rem;
+    padding-bottom: 3rem;
   }
 
   a {
