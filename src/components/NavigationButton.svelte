@@ -2,6 +2,8 @@
   import Chevron from "icons/Chevron.svelte";
   export let href: string;
   export let point: "left" | "right" = "right";
+  export let seoText: string;
+
 </script>
 
 <style type="scss">
@@ -63,17 +65,18 @@
       }
     }
   }
+
 </style>
 
-<a rel="prefetch" {href} class:left={point === 'left'}>
-  {#if point === 'left'}
+<a rel="prefetch" {href} class:left={point === "left"}>
+  {#if point === "left"}
     <Chevron rotation={180} />
   {/if}
-  <span class="hack">descriptive text hack</span>
+  <span class="hack">{seoText} |</span>
   <span class="text">
     <slot>more</slot>
   </span>
-  {#if point === 'right'}
+  {#if point === "right"}
     <Chevron />
   {/if}
 </a>

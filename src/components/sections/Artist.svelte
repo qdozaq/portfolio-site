@@ -1,6 +1,7 @@
 <script lang="ts">
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
+
 </script>
 
 <style type="scss">
@@ -59,6 +60,7 @@
       }
     }
   }
+
 </style>
 
 <Section title="Artist" {...$$props}>
@@ -68,6 +70,6 @@
     <img class="img-1" alt="hypnotized" src="/hypnotized_400.jpg" />
   </div>
   <span slot="action">
-    <NavigationButton href="/art">more</NavigationButton>
+    <NavigationButton href="/art" seoText="My Artwork">more</NavigationButton>
   </span>
 </Section>

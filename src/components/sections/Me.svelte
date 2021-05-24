@@ -1,6 +1,7 @@
 <script lang="ts">
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
+
 </script>
 
 <style>
@@ -16,11 +17,12 @@
       height: auto;
     }
   }
+
 </style>
 
 <Section title="Paul Mendoza" {...$$props}>
   <img alt="me" src="/me_2.jpg" width="400px" height="520px" slot="content" />
   <span slot="action">
-    <NavigationButton href="/about">about</NavigationButton>
+    <NavigationButton href="/about" seoText="About Me">about</NavigationButton>
   </span>
 </Section>

@@ -43,6 +43,7 @@
       error = true;
     }
   }
+
 </script>
 
 <style type="scss">
@@ -153,6 +154,7 @@
       height: 20rem;
     }
   }
+
 </style>
 
 <Section title="Software Developer" {...$$props} load={true}>
@@ -166,12 +168,16 @@
   </button>
   <span slot="action" class="actions">
     <span style="margin-top:.5rem">
-      <NavigationButton href="/experience">experience</NavigationButton>
+      <NavigationButton href="/experience" seoText="My Experience"
+        >experience</NavigationButton
+      >
     </span>
-    <NavigationButton href="/projects">projects</NavigationButton>
+    <NavigationButton href="/projects" seoText="My Projects"
+      >projects</NavigationButton
+    >
   </span>
 </Section>
-<Modal open={catFact !== ''} {onClose}>
+<Modal open={catFact !== ""} {onClose}>
   <div class="fact">{catFact}</div>
   {#if !error}
     <i>
@@ -180,7 +186,8 @@
         <a
           href="https://alexwohlbruck.github.io/cat-facts/"
           target="_blank"
-          rel="noopener noreferrer">alexwohlbruck.github.io/cat-facts</a>
+          rel="noopener noreferrer">alexwohlbruck.github.io/cat-facts</a
+        >
       </p>
     </i>
   {/if}

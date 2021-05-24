@@ -1,6 +1,7 @@
 <script lang="ts">
   import Section from "../HomeSection.svelte";
   import NavigationButton from "../NavigationButton.svelte";
+
 </script>
 
 <style>
@@ -8,6 +9,7 @@
     width: inherit;
     box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);
   }
+
 </style>
 
 <Section title="Motion Designer" {...$$props}>
@@ -16,6 +18,8 @@
     <source src="/motion_preview.mp4" type="video/mp4" />
   </video>
   <span slot="action">
-    <NavigationButton href="/motion">more</NavigationButton>
+    <NavigationButton href="/motion" seoText="My Motion Design Work"
+      >more</NavigationButton
+    >
   </span>
 </Section>
