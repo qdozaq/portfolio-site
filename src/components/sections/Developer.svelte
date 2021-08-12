@@ -27,23 +27,33 @@
   );
 
   async function handleClick() {
+    const timeout = 4000;
     try {
+      const controller = new AbortController();
+      const id = setTimeout(() => {
+        controller.abort();
+      }, timeout);
+
       const response = await fetch(
-        "https://cat-fact.herokuapp.com/facts/random"
+        "https://cat-fact.herokuapp.com/facts/random",
+        {
+          signal: controller.signal,
+        }
       );
 
       if (response.status !== 200) throw "oh no";
 
+      clearTimeout(id);
+
       const data = await response.json();
 
       catFact = data.text;
-    } catch {
+    } catch (e) {
       catFact =
         "Oh no. Something went wrong when trying to get a cat fact. Well, good thing I put this catch block in here 🧠";
       error = true;
     }
   }
-
 </script>
 
 <style type="scss">
@@ -154,7 +164,6 @@
       height: 20rem;
     }
   }
-
 </style>
 
 <Section title="Software Developer" {...$$props} load={true}>
