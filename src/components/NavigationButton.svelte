@@ -3,7 +3,6 @@
   export let href: string;
   export let point: "left" | "right" = "right";
   export let seoText: string;
-
 </script>
 
 <style type="scss">
@@ -51,6 +50,7 @@
 
   /* This bypasses googles SEO warning about non descriptive text links. Sorry Google.. */
   .hack {
+    height: 0px;
     position: absolute;
     opacity: 0;
   }
@@ -65,7 +65,6 @@
       }
     }
   }
-
 </style>
 
 <a rel="prefetch" {href} class:left={point === "left"}>
