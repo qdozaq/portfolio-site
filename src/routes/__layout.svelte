@@ -1,14 +1,13 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page }) => {
-		return { props: { hasLayout: page.path !== '/', path: page.path } };
+	export const load: Load = async ({ url }) => {
+		return { props: { hasLayout: url.pathname !== '/', path: url.pathname } };
 	};
 </script>
 
 <script lang="ts">
 	import { browser } from '$app/env';
-	import Menu from 'components/Menu.svelte';
 	import PageTransition from 'components/PageTransition.svelte';
 	import NavigationButton from 'components/NavigationButton.svelte';
 
@@ -50,7 +49,6 @@
 {#if hasLayout}
 	<main>
 		<PageTransition>
-			<!-- <Menu page={segment} /> -->
 			<div class="back">
 				<NavigationButton href="/" point="left">Back</NavigationButton>
 			</div>

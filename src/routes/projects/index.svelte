@@ -2,8 +2,8 @@
 	import type { Load } from '@sveltejs/kit';
 	import { projects, projectMap } from './_projects';
 	import type { Project } from './_projects';
-	export const load: Load = async ({ page }) => {
-		const project = page.query.get('project');
+	export const load: Load = async ({ params }) => {
+		const { project } = params;
 		if (project) {
 			const index = projectMap[project];
 			return { props: { selected: projects[index] } };

@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 // from https://github.com/jashkenas/underscore/blob/master/modules/throttle.js
 const now =
 	Date.now ||
@@ -15,21 +16,21 @@ export function throttle(
 	wait: number,
 	options?: { leading?: boolean; trailing?: boolean }
 ) {
-	var timeout, context, args, result;
-	var previous = 0;
+	let timeout, context, args, result;
+	let previous = 0;
 	if (!options) options = {};
 
-	var later = function () {
+	const later = function () {
 		previous = options.leading === false ? 0 : now();
 		timeout = null;
 		result = func.apply(context, args);
 		if (!timeout) context = args = null;
 	};
 
-	var throttled: any = function () {
-		var _now = now();
+	const throttled: any = function () {
+		const _now = now();
 		if (!previous && options.leading === false) previous = _now;
-		var remaining = wait - (_now - previous);
+		const remaining = wait - (_now - previous);
 		context = this;
 		args = arguments;
 		if (remaining <= 0 || remaining > wait) {

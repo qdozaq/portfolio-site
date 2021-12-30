@@ -27,3 +27,7 @@ export type Album = ImgurObject & {
 export type ImgurResponse = {
 	data: Array<Image | Album>;
 };
+
+export function isAlbum(o: Image | Album): o is Album {
+	return (o as Album).is_album;
+}

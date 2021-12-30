@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@sveltejs/adapter-node': next
   '@sveltejs/adapter-vercel': next
-  '@sveltejs/kit': next
+  '@sveltejs/kit': 1.0.0-next.208
   '@tsconfig/svelte': ^1.0.8
   '@types/cookie': ^0.4.1
   '@types/prismjs': ^1.16.6
@@ -27,7 +27,7 @@ specifiers:
 devDependencies:
   '@sveltejs/adapter-node': 1.0.0-next.58
   '@sveltejs/adapter-vercel': 1.0.0-next.34
-  '@sveltejs/kit': 1.0.0-next.211_svelte@3.44.3
+  '@sveltejs/kit': 1.0.0-next.208_svelte@3.44.3
   '@tsconfig/svelte': 1.0.10
   '@types/cookie': 0.4.1
   '@types/prismjs': 1.16.6
@@ -148,14 +148,15 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.211_svelte@3.44.3:
-    resolution: {integrity: sha512-jS28R40H6BypK5rSVUzNmQW3NaBTFijj4fJPEtx8YeSLuzqm7ZGl3wwqF+FRxisP6oyz2GkYSARRxzemDOfn9A==}
+  /@sveltejs/kit/1.0.0-next.208_svelte@3.44.3:
+    resolution: {integrity: sha512-4iHhkne7WvJPLRh/WNnm0NgbLpYz95aju44RkdpfMTyZMC9IMnKidHG/mPC7PPNh3OxQdWGuxjAe383rzJrHPQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
       svelte: ^3.44.0
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.33_svelte@3.44.3+vite@2.7.10
+      cheap-watch: 1.0.4
       sade: 1.7.4
       svelte: 3.44.3
       vite: 2.7.10
@@ -651,6 +652,11 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
+
+  /cheap-watch/1.0.4:
+    resolution: {integrity: sha512-QR/9FrtRL5fjfUJBhAKCdi0lSRQ3rVRRum3GF9wDKp2TJbEIMGhUEr2yU8lORzm9Isdjx7/k9S0DFDx+z5VGtw==}
+    engines: {node: '>=8'}
     dev: true
 
   /chokidar/3.4.3:
