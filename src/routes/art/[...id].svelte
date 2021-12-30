@@ -3,7 +3,7 @@
 	import type { Image, Album } from './_types/Image';
 
 	export const load: Load = async function ({ params, fetch }) {
-		const [v1, v2] = params.id;
+		const [v1, v2] = params.id.split('/');
 		const isAlbum = v1 === 'a';
 
 		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
