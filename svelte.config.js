@@ -2,7 +2,6 @@ import preprocess from 'svelte-preprocess';
 import vercel from '@sveltejs/adapter-vercel';
 // import node from '@sveltejs/adapter-node';
 import path from 'node:path';
-import { prismjsPlugin } from 'vite-plugin-prismjs';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -21,15 +20,7 @@ const config = {
 					utils: path.resolve('./src/utils'),
 					icons: path.resolve('./src/icons')
 				}
-			},
-			plugins: [
-				prismjsPlugin({
-					languages: ['javascript'],
-					plugins: ['line-numbers'],
-					theme: 'okaidia',
-					css: true
-				})
-			]
+			}
 		}
 	}
 };
