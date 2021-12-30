@@ -130,6 +130,9 @@
 			top: calc(var(--win-height) - 18.1rem);
 			left: calc(50% - 15.5rem);
 		}
+		h1.ssr {
+			top: calc(50% - 18.1rem);
+		}
 	}
 
 	.article {
