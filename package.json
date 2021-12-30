@@ -15,9 +15,8 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-node": "next",
-		"@sveltejs/adapter-vercel": "next",
-		"@sveltejs/kit": "1.0.0-next.208",
+		"@sveltejs/adapter-vercel": "1.0.0-next.32",
+		"@sveltejs/kit": "1.0.0-next.206",
 		"@tsconfig/svelte": "^1.0.8",
 		"@types/cookie": "^0.4.1",
 		"@types/prismjs": "^1.16.6",

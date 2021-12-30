@@ -1,9 +1,8 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@sveltejs/adapter-node': next
-  '@sveltejs/adapter-vercel': next
-  '@sveltejs/kit': 1.0.0-next.208
+  '@sveltejs/adapter-vercel': 1.0.0-next.32
+  '@sveltejs/kit': 1.0.0-next.206
   '@tsconfig/svelte': ^1.0.8
   '@types/cookie': ^0.4.1
   '@types/prismjs': ^1.16.6
@@ -25,9 +24,8 @@ specifiers:
   vercel: ^23.1.2
 
 devDependencies:
-  '@sveltejs/adapter-node': 1.0.0-next.58
-  '@sveltejs/adapter-vercel': 1.0.0-next.34
-  '@sveltejs/kit': 1.0.0-next.208_svelte@3.44.3
+  '@sveltejs/adapter-vercel': 1.0.0-next.32
+  '@sveltejs/kit': 1.0.0-next.206_svelte@3.44.3
   '@tsconfig/svelte': 1.0.10
   '@types/cookie': 0.4.1
   '@types/prismjs': 1.16.6
@@ -136,20 +134,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /@sveltejs/adapter-node/1.0.0-next.58:
-    resolution: {integrity: sha512-XU+QV5qIhHE8hNu2DmhWdpW4m5O7yq/Dw12eHI2rzZkSsiLPzIryKK7221vmjGCRUVmsLHeBf2VPk9T4pKM6Aw==}
-    dependencies:
-      tiny-glob: 0.2.9
-    dev: true
-
-  /@sveltejs/adapter-vercel/1.0.0-next.34:
-    resolution: {integrity: sha512-TQDQK2wjDQkoSkNVuFVu4a/hzqKIWCGL15Zi7zQv740ZSd6F2Lg9QHlFfEXMglu6mhoep084h6JiLtzavNiZeA==}
+  /@sveltejs/adapter-vercel/1.0.0-next.32:
+    resolution: {integrity: sha512-ZcltaS5bAobGD5P0z7xJIjPHSlGpF7padMIkqTzJxwMEb/acGgdO5yzDS8XUEaSNgj+prpD2oG8+gm33ds8x0A==}
     dependencies:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.208_svelte@3.44.3:
-    resolution: {integrity: sha512-4iHhkne7WvJPLRh/WNnm0NgbLpYz95aju44RkdpfMTyZMC9IMnKidHG/mPC7PPNh3OxQdWGuxjAe383rzJrHPQ==}
+  /@sveltejs/kit/1.0.0-next.206_svelte@3.44.3:
+    resolution: {integrity: sha512-AQEOKZLG1GKkuBfWUKKxMs9A3AzE9tSHYc4Lu+AL/4BAs4erIFdOei2ldsxak2ICxxeaCloqVRPvIOtj7UEacg==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1515,10 +1507,6 @@ packages:
       type-fest: 0.20.2
     dev: true
 
-  /globalyzer/0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: true
-
   /globby/11.0.4:
     resolution: {integrity: sha512-9O4MVG9ioZJ08ffbcyVYyLOJLk5JQ688pJ4eMGLpdWLHq/Wr1D9BlriLQyL0E+jbkuePVZXYFj47QM/v093wHg==}
     engines: {node: '>=10'}
@@ -1529,10 +1517,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /globrex/0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /globule/1.3.2:
@@ -3173,13 +3157,6 @@ packages:
 
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
-    dev: true
-
-  /tiny-glob/0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
     dev: true
 
   /to-readable-stream/1.0.0:

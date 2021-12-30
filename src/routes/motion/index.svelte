@@ -2,8 +2,8 @@
 	import type { Load } from '@sveltejs/kit';
 	import { videos, videoMap } from './_videos';
 	import type { Video } from './_videos';
-	export const load: Load = async ({ url }) => {
-		const project = url.searchParams.get('project');
+	export const load: Load = async ({ page }) => {
+		const project = page.query.get('project');
 		if (project) {
 			const index = videoMap[project];
 			return { props: { selected: videos[index] } };

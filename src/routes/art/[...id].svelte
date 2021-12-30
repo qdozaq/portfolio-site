@@ -2,8 +2,8 @@
 	import type { Load } from '@sveltejs/kit';
 	import type { Image, Album } from './_types/Image';
 
-	export const load: Load = async function ({ params, fetch }) {
-		const [v1, v2] = params.id.split('/');
+	export const load: Load = async function ({ page, fetch }) {
+		const [v1, v2] = page.params.id.split('/');
 		const isAlbum = v1 === 'a';
 
 		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
