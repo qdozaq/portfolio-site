@@ -4,6 +4,9 @@
 yarn-error.log
 /cypress/screenshots/
 /__sapper__/
+/.svelte-kit
+/package
+/build
 
 .vercel
 

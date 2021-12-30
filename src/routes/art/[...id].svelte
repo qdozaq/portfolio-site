@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
-	// import type { Preload } from "@sapper/common";
+	import type { Load } from '@sveltejs/kit';
 	import type { Image, Album } from './_types/Image';
-	export const preload = async function ({ params }, session) {
+
+	export const load: Load = async function ({ session, page }) {
 		const { IMGUR_CLIENT_ID } = session;
-		const [v1, v2] = params.id;
+		const [v1, v2] = page.params.id;
 		const isAlbum = v1 === 'a';
 
 		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
@@ -13,18 +14,20 @@
 		});
 
 		if (res.status !== 200) {
-			this.error(500, "Can't fetch images");
-			return;
+			return {
+				status: 500,
+				error: new Error("Can't fetch images")
+			};
 		}
 
 		const { data }: { data: Image | Album } = await res.json();
 
-		return { data };
+		return { props: { data } };
 	};
 </script>
 
 <script lang="ts">
-	import { goto } from '@sapper/app';
+	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
 

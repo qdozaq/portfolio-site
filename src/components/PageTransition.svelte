@@ -2,7 +2,7 @@
 	import { quadOut, quadIn } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
-	export let direction: 'left' | 'right';
+	export let direction: 'left' | 'right' = 'right';
 
 	function flyPage(
 		node: Element,

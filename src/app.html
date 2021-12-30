@@ -44,7 +44,6 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<meta name="theme-color" content="#333333" />
 
-		%sapper.base%
 		<!-- <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'%20%E2%80%94%21%40%23%24%25%5E%26%2A%28%29_%2B%3A%22%7D%7B%5B%5D%60~%0A1234567890%3F"
       rel="stylesheet"
@@ -181,19 +180,9 @@
 		<!-- <link rel="manifest" href="manifest.json" crossorigin="use-credentials" /> -->
 		<link rel="icon" type="image/png" href="favicon.png" />
 
-		<!-- Sapper generates a <style> tag containing critical CSS
-	     for the current page. CSS for the rest of the app is
-	     lazily loaded when it precaches secondary pages -->
-		%sapper.styles%
-
-		<!-- Sapper creates a <script> tag containing `src/client.js`
-	     and anything else it needs to hydrate the app and
-	     initialise the router -->
-		%sapper.scripts%
-
 		<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
-		%sapper.head%
+		%svelte.head%
 		<meta property="og:title" content="I'm Paul Mendoza" />
 		<meta property="og:site_name" content="I'm Paul Mendoza" />
 		<meta property="og:description" content="Paul Mendoza's Portfolio Site" />
@@ -203,8 +192,6 @@
 		<meta name="twitter:site" content="@qdozaq" />
 	</head>
 	<body class="scrollbar">
-		<!-- The application will be rendered inside this element,
-	     because `src/client.js` references it -->
-		<div id="sapper">%sapper.html%</div>
+		<div id="svelte">%svelte.body%</div>
 	</body>
 </html>

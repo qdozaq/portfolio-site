@@ -1,15 +1,26 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({ page }) => {
+		return { props: { hasLayout: page.path !== '/', path: page.path } };
+	};
+</script>
+
 <script lang="ts">
+	import { browser } from '$app/env';
 	import Menu from 'components/Menu.svelte';
 	import PageTransition from 'components/PageTransition.svelte';
 	import NavigationButton from 'components/NavigationButton.svelte';
 
-	export let segment: string;
+	export let hasLayout: boolean;
+	export let path: string;
+
+	console.log({ hasLayout, path });
 
 	// pages to exclude the media css on
-	const excludeMedia = ['projects', 'motion', 'art'];
+	const excludeMedia = ['/projects', '/motion', '/art'];
 
-	$: hasLayout = segment !== undefined;
-	$: process.browser && document.body.classList.toggle('noscroll', !hasLayout);
+	$: browser && document.body.classList.toggle('noscroll', !hasLayout);
 </script>
 
 <style type="scss">
@@ -45,7 +56,7 @@
 			<div class="back">
 				<NavigationButton href="/" point="left">Back</NavigationButton>
 			</div>
-			<div class:content={!excludeMedia.includes(segment)}>
+			<div class:content={!excludeMedia.includes(path)}>
 				<slot />
 			</div>
 		</PageTransition>

@@ -1,17 +1,19 @@
 <script context="module" lang="ts">
-	// import type { Preload } from "@sapper/common";
+	import type { Load } from '@sveltejs/kit';
 	import type { ImgurResponse, Image, Album } from './_types/Image';
 
-	export const preload = async function (page, session) {
+	export const load: Load = async function ({ session, fetch }) {
 		const { IMGUR_CLIENT_ID } = session;
 
-		const res = await this.fetch('https://api.imgur.com/3/account/qdozaq/submissions/0/', {
+		const res = await fetch('https://api.imgur.com/3/account/qdozaq/submissions/0/', {
 			headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
 		});
 
 		if (res.status !== 200) {
-			this.error(500, "Can't fetch images");
-			return;
+			return {
+				status: 500,
+				error: new Error("Can't fetch images")
+			};
 		}
 
 		const { data }: ImgurResponse = await res.json();
@@ -21,7 +23,7 @@
 			thumbnail: obj.is_album ? obj.cover : obj.id
 		}));
 
-		return { images };
+		return { props: { images } };
 	};
 </script>
 
@@ -99,7 +101,7 @@
 <h1>Art</h1>
 <div class="grid">
 	{#each images as img}
-		<a sapper:noscroll href="/art/{img.is_album ? 'a/' : ''}{img.id}">
+		<a sveltekit:noscroll href="/art/{img.is_album ? 'a/' : ''}{img.id}">
 			<img
 				alt={img.title}
 				out:send={{ key: img.id }}

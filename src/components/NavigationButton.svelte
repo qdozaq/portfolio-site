@@ -2,7 +2,7 @@
 	import Chevron from 'icons/Chevron.svelte';
 	export let href: string;
 	export let point: 'left' | 'right' = 'right';
-	export let seoText: string;
+	export let seoText: string = '';
 </script>
 
 <style type="scss">

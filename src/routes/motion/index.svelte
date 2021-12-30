@@ -1,25 +1,27 @@
 <script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
 	import { videos, videoMap } from './_videos';
 	import type { Video } from './_videos';
-	export async function preload(page, session) {
-		const { project } = page.query;
+	export const load: Load = async ({ page }) => {
+		const project = page.query.get('project');
 		if (project) {
 			const index = videoMap[project];
-			return { selected: videos[index] };
+			return { props: { selected: videos[index] } };
 		}
-		return { selected: null };
-	}
+		return { props: { selected: null } };
+	};
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/env';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
-	import { goto } from '@sapper/app';
+	import { goto } from '$app/navigation';
 	import { accent } from 'utils/color';
 
 	export let selected: Video | null;
 
-	$: process.browser && document.body.classList.toggle('noscroll', selected !== null);
+	$: browser && document.body.classList.toggle('noscroll', selected !== null);
 
 	let hover: number | undefined;
 
@@ -37,7 +39,7 @@
 	}
 
 	function back() {
-		goto('/motion', { noscrol: true });
+		goto('/motion', { noscroll: true });
 	}
 </script>
 
@@ -184,7 +186,7 @@
 				<div class="project-inner" out:send={{ key }} in:receive={{ key }}>
 					<h2>{title}</h2>
 					<article class="card">
-						<a href="/motion?project={key}" sapper:noscroll>
+						<a href="/motion?project={key}" sveltekit:noscroll>
 							<img alt={title} src="/{key}.jpg" class:display={hover !== index} />
 							<video playsinline autoplay muted loop class:display={hover === index}>
 								<source src="/{key}.webm" type="video/webm" />
