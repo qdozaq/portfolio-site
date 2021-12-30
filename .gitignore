@@ -9,6 +9,7 @@ yarn-error.log
 /build
 
 .vercel
+.vercel_build_output
 
 *.md0
 .env

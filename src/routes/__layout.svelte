@@ -15,8 +15,6 @@
 	export let hasLayout: boolean;
 	export let path: string;
 
-	console.log({ hasLayout, path });
-
 	// pages to exclude the media css on
 	const excludeMedia = ['/projects', '/motion', '/art'];
 

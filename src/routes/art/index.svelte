@@ -2,11 +2,9 @@
 	import type { Load } from '@sveltejs/kit';
 	import type { ImgurResponse, Image, Album } from './_types/Image';
 
-	export const load: Load = async function ({ session, fetch }) {
-		const { IMGUR_CLIENT_ID } = session;
-
+	export const load: Load = async function ({ fetch }) {
 		const res = await fetch('https://api.imgur.com/3/account/qdozaq/submissions/0/', {
-			headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
+			headers: { Authorization: `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}` }
 		});
 
 		if (res.status !== 200) {

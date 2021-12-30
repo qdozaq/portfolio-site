@@ -2,15 +2,14 @@
 	import type { Load } from '@sveltejs/kit';
 	import type { Image, Album } from './_types/Image';
 
-	export const load: Load = async function ({ session, page }) {
-		const { IMGUR_CLIENT_ID } = session;
+	export const load: Load = async function ({ page, fetch }) {
 		const [v1, v2] = page.params.id;
 		const isAlbum = v1 === 'a';
 
 		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
 
-		const res = await this.fetch(endpoint, {
-			headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
+		const res = await fetch(endpoint, {
+			headers: { Authorization: `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}` }
 		});
 
 		if (res.status !== 200) {
