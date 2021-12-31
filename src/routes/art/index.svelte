@@ -1,25 +1,9 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import type { ImgurResponse, Image, Album } from './_types/Image';
+	import type { Image, Album } from './_types/Image';
 
 	export const load: Load = async function ({ fetch }) {
-		const res = await fetch('https://api.imgur.com/3/account/qdozaq/submissions/0/', {
-			headers: { Authorization: `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}` }
-		});
-
-		if (res.status !== 200) {
-			return {
-				status: 500,
-				error: new Error("Can't fetch images")
-			};
-		}
-
-		const { data }: ImgurResponse = await res.json();
-
-		const images = data.map((obj) => ({
-			...obj,
-			thumbnail: obj.is_album ? obj.cover : obj.id
-		}));
+		const images = await fetch('/art.json').then((res) => res.json());
 
 		return { props: { images } };
 	};

@@ -52,7 +52,7 @@
 			<div class="back">
 				<NavigationButton href="/" point="left">Back</NavigationButton>
 			</div>
-			<div class:content={!excludeMedia.includes(path)}>
+			<div class:content={!excludeMedia.some((p) => path.startsWith(p))}>
 				<slot />
 			</div>
 		</PageTransition>

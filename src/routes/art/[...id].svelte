@@ -6,20 +6,8 @@
 		const [v1, v2] = params.id.split('/');
 		const isAlbum = v1 === 'a';
 
-		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
-
-		const res = await fetch(endpoint, {
-			headers: { Authorization: `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}` }
-		});
-
-		if (res.status !== 200) {
-			return {
-				status: 500,
-				error: new Error("Can't fetch images")
-			};
-		}
-
-		const { data }: { data: Image | Album } = await res.json();
+		const id = isAlbum ? v2 : v1;
+		const data = await fetch(`/art/${id}.json?album=${isAlbum}`).then((res) => res.json());
 
 		return { props: { data } };
 	};
