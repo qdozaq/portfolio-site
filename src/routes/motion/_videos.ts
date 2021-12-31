@@ -1,16 +1,16 @@
 export type Video = {
-  title: string;
-  description: string;
-  videoId: number;
-  key: string;
+	title: string;
+	description: string;
+	videoId: number;
+	key: string;
 };
 
 export const videos: Video[] = [
-  {
-    title: "Reel 2019",
-    key: "reel",
-    videoId: 308906486,
-    description: `
+	{
+		title: 'Reel 2019',
+		key: 'reel',
+		videoId: 308906486,
+		description: `
       A collection of my work through the years.
       <br>
       <br>
@@ -21,13 +21,13 @@ export const videos: Video[] = [
       Music: <a href="https://freemusicarchive.org/music/Billy_Early/FrostWire_Creative_Commons_Mixtape_Vol_6/03_Billy_Early_The_Early_EP_Cool_Kids_FROSTCLICK_FROSTWIRE_CREATIVE_COMMONS">
       Cool Kids</a> by
       <a href="https://www.instagram.com/billyearlyraps/?hl=en">Billy Early</a>
-    `,
-  },
-  {
-    title: "Animate NYC Vol. 1",
-    key: "animatenyc",
-    videoId: 446258250,
-    description: `
+    `
+	},
+	{
+		title: 'Animate NYC Vol. 1',
+		key: 'animatenyc',
+		videoId: 446258250,
+		description: `
       A year long personal project following my move to NYC.
       <br>
       Inspired by the amount of street art around me I set out to bring these pieces to life.
@@ -57,25 +57,25 @@ export const videos: Video[] = [
       A Mess These Days
       </a> by
       <a href="https://www.instagram.com/cullahmusic/?hl=en">Cullah</a>
-    `,
-  },
-  {
-    title: "CORNDOG",
-    key: "corndog",
-    videoId: 455248597,
-    description: `
+    `
+	},
+	{
+		title: 'CORNDOG',
+		key: 'corndog',
+		videoId: 455248597,
+		description: `
       The first of potentially several videos digging through the depths of 
       <a target="_blank" rel="noopener noreferrer" href="https://archive.org/">archive.org</a>
       trying to find strange videos from the past and making them even stranger!
       <br>
       <br>
       Animation and music created by me.
-    `,
-  },
+    `
+	}
 ];
 
 // map each project key to it's index
 export const videoMap: Record<string, number> = videos.reduce(
-  (map, project, i) => ({ ...map, [project.key]: i }),
-  {}
+	(map, project, i) => ({ ...map, [project.key]: i }),
+	{}
 );

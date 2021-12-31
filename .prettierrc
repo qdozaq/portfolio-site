@@ -1,4 +1,8 @@
 {
-  "semi": true,
-  "svelteSortOrder": "options-scripts-styles-markup"
+	"semi": true,
+	"svelteSortOrder": "options-scripts-styles-markup",
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"printWidth": 100
 }
