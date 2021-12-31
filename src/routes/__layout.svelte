@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page }) => {
-		return { props: { hasLayout: page.path !== '/', path: page.path } };
+	export const load: Load = async ({ url }) => {
+		return { props: { hasLayout: url.pathname !== '/', path: url.pathname } };
 	};
 </script>
 
