@@ -1,30 +1,21 @@
 <script context="module" lang="ts">
-	// import type { Preload } from "@sapper/common";
+	import type { Load } from '@sveltejs/kit';
 	import type { Image, Album } from './_types/Image';
-	export const preload = async function ({ params }, session) {
-		const { IMGUR_CLIENT_ID } = session;
-		const [v1, v2] = params.id;
+
+	export const load: Load = async function ({ params, fetch }) {
+		const [v1, v2] = params.id.split('/');
 		const isAlbum = v1 === 'a';
 
-		const endpoint = `https://api.imgur.com/3/${isAlbum ? 'album/' + v2 : 'image/' + v1}`;
+		const id = isAlbum ? v2 : v1;
+		const data = await fetch(`/art/${id}.json?album=${isAlbum}`).then((res) => res.json());
 
-		const res = await this.fetch(endpoint, {
-			headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
-		});
-
-		if (res.status !== 200) {
-			this.error(500, "Can't fetch images");
-			return;
-		}
-
-		const { data }: { data: Image | Album } = await res.json();
-
-		return { data };
+		return { props: { data } };
 	};
 </script>
 
 <script lang="ts">
-	import { goto } from '@sapper/app';
+	import { isAlbum } from './_types/Image';
+	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
 
@@ -148,7 +139,7 @@
 				{/if}
 			{/each}
 		{:else}
-			{#if data.animated}
+			{#if !isAlbum(data) && data.animated}
 				<video
 					out:send={{ key: data.id }}
 					in:receive={{ key: data.id }}

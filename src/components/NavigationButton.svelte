@@ -2,12 +2,13 @@
 	import Chevron from 'icons/Chevron.svelte';
 	export let href: string;
 	export let point: 'left' | 'right' = 'right';
-	export let seoText: string;
+	export let seoText: string = '';
 </script>
 
 <style type="scss">
 	@import '../sass/vars.scss';
 	a {
+		position: relative;
 		text-decoration: none;
 		display: flex;
 		align-items: center;
@@ -51,6 +52,7 @@
 	/* This bypasses googles SEO warning about non descriptive text links. Sorry Google.. */
 	.hack {
 		height: 0px;
+		font-size: 1px;
 		position: absolute;
 		opacity: 0;
 	}

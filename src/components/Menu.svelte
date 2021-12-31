@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { browser } from '$app/env';
 	import { quadOut } from 'svelte/easing';
 	import { fly, slide } from 'svelte/transition';
 	export let page: string;
 	let show = false;
-	$: process.browser && document.body.classList.toggle('noscroll', show);
+	$: browser && document.body.classList.toggle('noscroll', show);
 
 	const links = [
 		['Home', '/'],

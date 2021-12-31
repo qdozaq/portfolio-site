@@ -44,7 +44,6 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<meta name="theme-color" content="#333333" />
 
-		%sapper.base%
 		<!-- <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'%20%E2%80%94%21%40%23%24%25%5E%26%2A%28%29_%2B%3A%22%7D%7B%5B%5D%60~%0A1234567890%3F"
       rel="stylesheet"
@@ -178,22 +177,137 @@
 				}
 			}
 		</style>
+		<style>
+			/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+			code[class*='language-'],
+			pre[class*='language-'] {
+				color: #f8f8f2;
+				background: none;
+				text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+				font-size: 1em;
+				text-align: left;
+				white-space: pre;
+				word-spacing: normal;
+				word-break: normal;
+				word-wrap: normal;
+				line-height: 1.5;
+
+				-moz-tab-size: 4;
+				-o-tab-size: 4;
+				tab-size: 4;
+
+				-webkit-hyphens: none;
+				-moz-hyphens: none;
+				-ms-hyphens: none;
+				hyphens: none;
+			}
+
+			/* Code blocks */
+			pre[class*='language-'] {
+				padding: 1em;
+				margin: 0.5em 0;
+				overflow: auto;
+				border-radius: 0.3em;
+			}
+
+			:not(pre) > code[class*='language-'],
+			pre[class*='language-'] {
+				background: #272822;
+			}
+
+			/* Inline code */
+			:not(pre) > code[class*='language-'] {
+				padding: 0.1em;
+				border-radius: 0.3em;
+				white-space: normal;
+			}
+
+			.token.comment,
+			.token.prolog,
+			.token.doctype,
+			.token.cdata {
+				color: #8292a2;
+			}
+
+			.token.punctuation {
+				color: #f8f8f2;
+			}
+
+			.token.namespace {
+				opacity: 0.7;
+			}
+
+			.token.property,
+			.token.tag,
+			.token.constant,
+			.token.symbol,
+			.token.deleted {
+				color: #f92672;
+			}
+
+			.token.boolean,
+			.token.number {
+				color: #ae81ff;
+			}
+
+			.token.selector,
+			.token.attr-name,
+			.token.string,
+			.token.char,
+			.token.builtin,
+			.token.inserted {
+				color: #a6e22e;
+			}
+
+			.token.operator,
+			.token.entity,
+			.token.url,
+			.language-css .token.string,
+			.style .token.string,
+			.token.variable {
+				color: #f8f8f2;
+			}
+
+			.token.atrule,
+			.token.attr-value,
+			.token.function,
+			.token.class-name {
+				color: #e6db74;
+			}
+
+			.token.keyword {
+				color: #66d9ef;
+			}
+
+			.token.regex,
+			.token.important {
+				color: #fd971f;
+			}
+
+			.token.important,
+			.token.bold {
+				font-weight: bold;
+			}
+			.token.italic {
+				font-style: italic;
+			}
+
+			.token.entity {
+				cursor: help;
+			}
+		</style>
 		<!-- <link rel="manifest" href="manifest.json" crossorigin="use-credentials" /> -->
 		<link rel="icon" type="image/png" href="favicon.png" />
 
-		<!-- Sapper generates a <style> tag containing critical CSS
-	     for the current page. CSS for the rest of the app is
-	     lazily loaded when it precaches secondary pages -->
-		%sapper.styles%
-
-		<!-- Sapper creates a <script> tag containing `src/client.js`
-	     and anything else it needs to hydrate the app and
-	     initialise the router -->
-		%sapper.scripts%
-
 		<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
-		%sapper.head%
+		%svelte.head%
 		<meta property="og:title" content="I'm Paul Mendoza" />
 		<meta property="og:site_name" content="I'm Paul Mendoza" />
 		<meta property="og:description" content="Paul Mendoza's Portfolio Site" />
@@ -203,8 +317,6 @@
 		<meta name="twitter:site" content="@qdozaq" />
 	</head>
 	<body class="scrollbar">
-		<!-- The application will be rendered inside this element,
-	     because `src/client.js` references it -->
-		<div id="sapper">%sapper.html%</div>
+		<div id="svelte">%svelte.body%</div>
 	</body>
 </html>

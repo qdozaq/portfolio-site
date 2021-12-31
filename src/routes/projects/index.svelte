@@ -1,25 +1,27 @@
 <script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
 	import { projects, projectMap } from './_projects';
 	import type { Project } from './_projects';
-	export async function preload(page, session) {
-		const { project } = page.query;
+	export const load: Load = async ({ url }) => {
+		const project = url.searchParams.get('project');
 		if (project) {
 			const index = projectMap[project];
-			return { selected: projects[index] };
+			return { props: { selected: projects[index] } };
 		}
-		return { selected: null };
-	}
+		return { props: { selected: null } };
+	};
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/env';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
 	import Pill from 'components/Pill.svelte';
-	import { goto } from '@sapper/app';
+	import { goto } from '$app/navigation';
 
 	export let selected: Project | null;
 
-	$: process.browser && document.body.classList.toggle('noscroll', selected !== null);
+	$: browser && document.body.classList.toggle('noscroll', selected !== null);
 
 	let hover: number | undefined;
 
@@ -34,7 +36,7 @@
 	}
 
 	function back() {
-		goto('/projects', { noscrol: true });
+		goto('/projects', { noscroll: true });
 	}
 </script>
 
@@ -174,7 +176,7 @@
 				<div class="project-inner" out:send={{ key }} in:receive={{ key }}>
 					<h2>{title}</h2>
 					<article class="card">
-						<a href="/projects?project={key}" sapper:noscroll>
+						<a href="/projects?project={key}" sveltekit:noscroll>
 							<img alt={title} src="/{key}.jpg" class:display={novideo || hover !== index} />
 							{#if !novideo}
 								<video playsinline autoplay muted loop class:display={hover === index}>
@@ -199,7 +201,7 @@
 						<h2>{title}</h2>
 						<button name="close" class="close">&#10005</button>
 					</div>
-					<a href="/projects" sapper:noscroll>
+					<a href="/projects" sveltekit:noscroll>
 						<video playsinline autoplay muted loop poster="/{key}.jpg">
 							<source src="/{key}.webm" type="video/webm" />
 							<source src="/{key}.mp4" type="video/mp4" />

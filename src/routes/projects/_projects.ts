@@ -99,7 +99,7 @@ export const projects: Project[] = [
 		tools: [
 			['Typescript', 'https://www.typescriptlang.org/'],
 			['Svelte', 'https://svelte.dev/'],
-			['Sapper', 'https://sapper.svelte.dev/'],
+			['Svelte Kit', 'https://kit.svelte.dev/'],
 			['Vercel', 'https://vercel.com']
 		]
 	},
