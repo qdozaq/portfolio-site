@@ -2,7 +2,7 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ url }) => {
-		return { props: { hasLayout: url.pathname.length > 1, path: url.pathname } };
+		return { props: { path: url.pathname } };
 	};
 </script>
 
@@ -11,13 +11,12 @@
 	import PageTransition from 'components/PageTransition.svelte';
 	import NavigationButton from 'components/NavigationButton.svelte';
 
-	export let hasLayout: boolean;
 	export let path: string;
 
 	// pages to exclude the media css on
 	const excludeMedia = ['/projects', '/motion', '/art'];
 
-	$: browser && document.body.classList.toggle('noscroll', !hasLayout);
+	$: browser && document.body.classList.toggle('noscroll', !path);
 </script>
 
 <style type="scss">
@@ -46,9 +45,9 @@
 	}
 </style>
 
-{#if hasLayout}
+{#if !path}
 	<main>
-		<PageTransition>
+		<PageTransition key={path}>
 			<div class="back">
 				<NavigationButton href="/" point="left">Back</NavigationButton>
 			</div>
@@ -58,7 +57,7 @@
 		</PageTransition>
 	</main>
 {:else}
-	<PageTransition direction="left">
+	<PageTransition direction="left" key={path}>
 		<slot />
 	</PageTransition>
 {/if}
