@@ -2,7 +2,7 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ url }) => {
-		return { props: { hasLayout: url.pathname !== '/', path: url.pathname } };
+		return { props: { hasLayout: url.pathname.length > 1, path: url.pathname } };
 	};
 </script>
 
