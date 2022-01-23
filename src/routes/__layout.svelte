@@ -45,7 +45,7 @@
 	}
 </style>
 
-{#if !path}
+{#if path !== '' && path !== '/'}
 	<main>
 		<PageTransition key={path}>
 			<div class="back">
