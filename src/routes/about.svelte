@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <style>
 	h1 {
 		font-size: 3rem;

@@ -2,6 +2,8 @@
 	import type { Load } from '@sveltejs/kit';
 	import type { Image, Album } from './_types/Image';
 
+	export const prerender = true;
+
 	export const load: Load = async function ({ fetch }) {
 		const images = await fetch('/art.json').then((res) => res.json());
 
