@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import PageTransition from 'components/PageTransition.svelte';
 	import HomeContainer from 'components/HomeContainer.svelte';
