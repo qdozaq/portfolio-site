@@ -47,7 +47,7 @@
 
 {#if path !== '' && path !== '/'}
 	<main>
-		<PageTransition key={path}>
+		<PageTransition>
 			<div class="back">
 				<NavigationButton href="/" point="left">Back</NavigationButton>
 			</div>
@@ -57,7 +57,7 @@
 		</PageTransition>
 	</main>
 {:else}
-	<PageTransition direction="left" key={path}>
+	<PageTransition direction="left">
 		<slot />
 	</PageTransition>
 {/if}
