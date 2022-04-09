@@ -3,7 +3,6 @@
 	import { fly } from 'svelte/transition';
 
 	export let direction: 'left' | 'right' = 'right';
-	export let key = '';
 
 	function flyPage(
 		node: Element,
@@ -19,8 +18,6 @@
 	}
 </script>
 
-<!-- {#key key} -->
 <div in:flyPage={{ phase: 'in', direction }} out:flyPage={{ phase: 'out', direction }}>
 	<slot />
 </div>
-<!-- {/key} -->
