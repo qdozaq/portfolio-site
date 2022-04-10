@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/env';
 	import PageTransition from 'components/PageTransition.svelte';
 	import HomeContainer from 'components/HomeContainer.svelte';
 	import Progressbar from 'components/HomeProgressbar.svelte';
@@ -10,8 +9,6 @@
 	let winHeight = 0;
 	let prevDrag = 0;
 	let prevDirection = 0;
-
-	$: browser && document.body.classList.toggle('noscroll', true);
 
 	function handleResize() {
 		winHeight = getWindowHeight();
