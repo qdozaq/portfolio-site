@@ -18,6 +18,6 @@ export const get: RequestHandler = async () => {
 	}));
 
 	return {
-		body: images
+		body: { images }
 	};
 };

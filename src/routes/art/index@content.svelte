@@ -1,15 +1,5 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import type { Image, Album } from './_types/Image';
-
-	export const load: Load = async function ({ fetch }) {
-		const images = await fetch('/art.json').then((res) => res.json());
-
-		return { props: { images } };
-	};
-</script>
-
 <script lang="ts">
+	import type { Image, Album } from './_types/Image';
 	import { send, receive } from 'utils/crossfade';
 	export let images: Array<Image | Album>;
 </script>
