@@ -1,5 +1,4 @@
 <script lang="ts">
-	import PageTransition from 'components/PageTransition.svelte';
 	import HomeContainer from 'components/HomeContainer.svelte';
 	import Progressbar from 'components/HomeProgressbar.svelte';
 	import sections from 'components/sections';
@@ -95,7 +94,5 @@
 	on:touchstart={handleDrag}
 	on:touchend={handleDrag} />
 
-<PageTransition direction="left">
-	<HomeContainer {sections} {winHeight} />
-	<Progressbar {sections} {winHeight} />
-</PageTransition>
+<HomeContainer {sections} {winHeight} />
+<Progressbar {sections} {winHeight} />
