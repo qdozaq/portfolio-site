@@ -1,19 +1,5 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import type { Image, Album } from './_types/Image';
-
-	export const load: Load = async function ({ params, fetch }) {
-		const [v1, v2] = params.id.split('/');
-		const isAlbum = v1 === 'a';
-
-		const id = isAlbum ? v2 : v1;
-		const data = await fetch(`/art/${id}.json?album=${isAlbum}`).then((res) => res.json());
-
-		return { props: { data } };
-	};
-</script>
-
 <script lang="ts">
+	import type { Image, Album } from './_types/Image';
 	import { isAlbum } from './_types/Image';
 	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
