@@ -34,7 +34,7 @@
 				controller.abort();
 			}, timeout);
 
-			const response = await fetch('https://cat-fact.herokuapp.com/facts/random', {
+			const response = await fetch('https://catfact.ninja/fact', {
 				signal: controller.signal
 			});
 
@@ -44,7 +44,7 @@
 
 			const data = await response.json();
 
-			catFact = data.text;
+			catFact = data.fact;
 		} catch (e) {
 			catFact =
 				'Oh no. Something went wrong when trying to get a cat fact. Well, good thing I put this catch block in here 🧠';
@@ -185,10 +185,8 @@
 		<i>
 			<p class="author">
 				-
-				<a
-					href="https://alexwohlbruck.github.io/cat-facts/"
-					target="_blank"
-					rel="noopener noreferrer">alexwohlbruck.github.io/cat-facts</a
+				<a href="https://catfact.ninja" target="_blank" rel="noopener noreferrer"
+					>https://catfact.ninja</a
 				>
 			</p>
 		</i>
