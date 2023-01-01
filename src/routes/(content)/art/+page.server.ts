@@ -1,11 +1,11 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type {Album,Image } from './Image'
-import {IMGUR_CLIENT_ID} from '$env/static/private'
+import {VITE_IMGUR_CLIENT_ID} from '$env/static/private'
 
 export const load =( async () => {
 	const res = await fetch('https://api.imgur.com/3/account/qdozaq/submissions/0/', {
-		headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
+		headers: { Authorization: `Client-ID ${VITE_IMGUR_CLIENT_ID}` }
 	});
 
 	if (res.status !== 200) {

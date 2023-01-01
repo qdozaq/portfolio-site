@@ -1,14 +1,14 @@
 import { error } from '@sveltejs/kit';
 import type { Album, Image } from '../Image';
 import type {PageServerLoad} from './$types'
-import {IMGUR_CLIENT_ID} from '$env/static/private'
+import {VITE_IMGUR_CLIENT_ID} from '$env/static/private'
 export const load = (async ({ params }) => {
 	const [v1, v2] = params.id.split('/');
 	const isAlbum = v1 === 'a';
 	const id = isAlbum ? v2 : v1;
 
 	const res = await fetch(`https://api.imgur.com/3/${isAlbum ? 'album' : 'image'}/${id}`, {
-		headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` }
+		headers: { Authorization: `Client-ID ${VITE_IMGUR_CLIENT_ID}` }
 	});
 
 	if (res.status !== 200) {
