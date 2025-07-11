@@ -53,7 +53,7 @@
 	}
 </script>
 
-<style type="scss">
+<style lang="scss">
 	.actions {
 		display: flex;
 		flex-direction: column;

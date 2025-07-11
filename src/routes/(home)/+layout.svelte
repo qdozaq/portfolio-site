@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import PageTransition from 'components/PageTransition.svelte';
 
 	$: browser && document.body.classList.toggle('noscroll', true);

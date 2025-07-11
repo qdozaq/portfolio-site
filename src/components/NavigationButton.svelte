@@ -5,7 +5,7 @@
 	export let seoText: string = '';
 </script>
 
-<style type="scss">
+<style lang="scss">
 	@import '../sass/vars.scss';
 	a {
 		position: relative;

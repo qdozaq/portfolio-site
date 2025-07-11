@@ -1,5 +1,7 @@
-import type { RequestHandler } from '@sveltejs/kit';
-export const get: RequestHandler = async ({ params }) => {
+import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
+
+export const load: PageServerLoad = async ({ params, fetch }) => {
 	const [v1, v2] = params.id.split('/');
 	const isAlbum = v1 === 'a';
 	const id = isAlbum ? v2 : v1;
@@ -9,14 +11,9 @@ export const get: RequestHandler = async ({ params }) => {
 	});
 
 	if (res.status !== 200) {
-		return {
-			status: 500,
-			body: { error: "Can't fetch images" }
-		};
+		error(500, "Can't fetch images");
 	}
 
 	const { data } = await res.json();
-	return {
-		body: { data }
-	};
+	return { data };
 };

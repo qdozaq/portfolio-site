@@ -1,11 +1,11 @@
 <script lang="ts">
 	import PageTransition from 'components/PageTransition.svelte';
 	import NavigationButton from 'components/NavigationButton.svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	$: browser && document.body.classList.toggle('noscroll', false);
 </script>
 
-<style type="scss">
+<style lang="scss">
 	main {
 		margin-left: 1rem;
 		margin-right: 1rem;

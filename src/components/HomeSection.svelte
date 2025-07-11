@@ -18,7 +18,7 @@
 	});
 </script>
 
-<style type="scss">
+<style lang="scss">
 	@import '../sass/vars.scss';
 	section {
 		position: fixed;

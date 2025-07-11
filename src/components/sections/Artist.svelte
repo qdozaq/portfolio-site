@@ -3,7 +3,7 @@
 	import NavigationButton from '../NavigationButton.svelte';
 </script>
 
-<style type="scss">
+<style lang="scss">
 	img {
 		width: inherit;
 		box-shadow: 0px 4px 20px 1px rgba(0, 0, 0, 0.5);

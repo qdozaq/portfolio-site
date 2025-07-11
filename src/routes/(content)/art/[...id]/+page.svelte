@@ -1,14 +1,16 @@
 <script lang="ts">
-	import type { Image, Album } from './_types/Image';
-	import { isAlbum } from './_types/Image';
+	import type { PageData } from './$types';
+	import type { Image, Album } from '../_types/Image';
+	import { isAlbum } from '../_types/Image';
 	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
 
-	export let data: Image | Album;
+	export let data: PageData;
+	$: imageData = data.data as Image | Album;
 
 	function back() {
-		goto('/art', { noscroll: true });
+		goto('/art', { noScroll: true });
 	}
 </script>
 
@@ -77,8 +79,8 @@
 </style>
 
 <svelte:head>
-	<title>{data.title}</title>
-	<meta name="description" content="{data.title} showcase" />
+	<title>{imageData.title}</title>
+	<meta name="description" content="{imageData.title} showcase" />
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
@@ -86,16 +88,16 @@
 	<div class="content">
 		<div class="header" on:click={back}>
 			<h2>
-				{@html data.title}
+				{@html imageData.title}
 			</h2>
 			<button name="close" class="close">&#10005</button>
 		</div>
-		{#if data.is_album}
-			{#each data.images as image, index}
+		{#if imageData.is_album}
+			{#each imageData.images as image, index}
 				{#if image.animated}
 					<video
-						out:send={index === 0 && { key: data.id }}
-						in:receive={index === 0 && { key: data.id }}
+						out:send={index === 0 && { key: imageData.id }}
+						in:receive={index === 0 && { key: imageData.id }}
 						playsinline
 						autoplay
 						muted
@@ -110,8 +112,8 @@
 						alt="i-{index}"
 						width={image.width}
 						height={image.height}
-						out:send={index === 0 && { key: data.id }}
-						in:receive={index === 0 && { key: data.id }}
+						out:send={index === 0 && { key: imageData.id }}
+						in:receive={index === 0 && { key: imageData.id }}
 						src="https://i.imgur.com/{image.id}l.jpg"
 						srcset="
               https://i.imgur.com/{image.id}l.jpg 640w,
@@ -125,36 +127,36 @@
 				{/if}
 			{/each}
 		{:else}
-			{#if !isAlbum(data) && data.animated}
+			{#if !isAlbum(data) && imageData.animated}
 				<video
-					out:send={{ key: data.id }}
-					in:receive={{ key: data.id }}
+					out:send={{ key: imageData.id }}
+					in:receive={{ key: imageData.id }}
 					playsinline
 					autoplay
 					muted
 					loop
-					height={data.height}
-					width={data.width}
+					height={imageData.height}
+					width={imageData.width}
 				>
-					<source src={data.mp4} type={data.type} />
+					<source src={imageData.mp4} type={imageData.type} />
 				</video>
 			{:else}
 				<img
-					alt={data.title}
-					width={data.width}
-					height={data.height}
-					out:send={{ key: data.id }}
-					in:receive={{ key: data.id }}
-					src="https://i.imgur.com/{data.id}l.jpg"
+					alt={imageData.title}
+					width={imageData.width}
+					height={imageData.height}
+					out:send={{ key: imageData.id }}
+					in:receive={{ key: imageData.id }}
+					src="https://i.imgur.com/{imageData.id}l.jpg"
 					srcset="
-              https://i.imgur.com/{data.id}l.jpg 640w,
-              https://i.imgur.com/{data.id}h.jpg 1024w
+              https://i.imgur.com/{imageData.id}l.jpg 640w,
+              https://i.imgur.com/{imageData.id}h.jpg 1024w
           "
 				/>
 			{/if}
-			<a target="_blank" rel="noopener noreferrer" href={data.link}>Full Size</a>
-			{#if data.description}
-				<p>{data.description}</p>
+			<a target="_blank" rel="noopener noreferrer" href={imageData.link}>Full Size</a>
+			{#if imageData.description}
+				<p>{imageData.description}</p>
 			{/if}
 		{/if}
 	</div>

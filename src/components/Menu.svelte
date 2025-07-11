@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { quadOut } from 'svelte/easing';
 	import { fly, slide } from 'svelte/transition';
 	export let page: string;
@@ -25,7 +25,7 @@
 	}
 </script>
 
-<style type="scss">
+<style lang="scss">
 	button {
 		z-index: 11;
 		cursor: pointer;

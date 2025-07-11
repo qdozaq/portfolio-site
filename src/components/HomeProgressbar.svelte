@@ -38,7 +38,7 @@
 	});
 </script>
 
-<style type="scss">
+<style lang="scss">
 	.container {
 		display: flex;
 		position: fixed;

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -73,7 +73,9 @@
 				font-style: normal;
 				font-weight: 100;
 				font-display: swap;
-				src: local('Roboto Thin'), local('Roboto-Thin'),
+				src:
+					local('Roboto Thin'),
+					local('Roboto-Thin'),
 					url(https://fonts.gstatic.com/l/font?kit=KFOkCnqEu92Fr1MmgWxKMW43CuDQtqxrXVycKHM0UwXqadI5GH6rkTXh1h1knCtzlTw_pI2LCb2kDHBqYpjQgsFKylncVy7M8R5xgWZ9ZwKM9_aG3rA3RJVAGVKrdeS-gjfE0uy6ogCY9w&skey=5473b731ec7fc9c1&v=v20)
 						format('woff2');
 			}
@@ -82,7 +84,9 @@
 				font-style: normal;
 				font-weight: 300;
 				font-display: swap;
-				src: local('Roboto Light'), local('Roboto-Light'),
+				src:
+					local('Roboto Light'),
+					local('Roboto-Light'),
 					url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmSU5vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=11ce8ad5f54705ca&v=v20)
 						format('woff2');
 			}
@@ -91,7 +95,9 @@
 				font-style: normal;
 				font-weight: 400;
 				font-display: swap;
-				src: local('Roboto'), local('Roboto-Regular'),
+				src:
+					local('Roboto'),
+					local('Roboto-Regular'),
 					url(https://fonts.gstatic.com/l/font?kit=KFOmCnqEu92Fr1Me4H4WCRccCOLWsK5pU1KeKmkuUQfsb9A7FnCpl0-f1B9imilxmzI9pouNC7-6EnJoZJ7SgM9EyFvbUizyzxxzh2B_ZQyC9fSA2LI1WotCG1Std-awjDXG1eklXHY&skey=a0a0114a1dcab3ac&v=v20)
 						format('woff2');
 			}
@@ -100,7 +106,9 @@
 				font-style: normal;
 				font-weight: 500;
 				font-display: swap;
-				src: local('Roboto Medium'), local('Roboto-Medium'),
+				src:
+					local('Roboto Medium'),
+					local('Roboto-Medium'),
 					url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBgVkIOHTt6tqXl2TKXA1SATpaNU4G3-kkDbkqRxnnSxylj0wpY6KDrynDW9rYZnXg8JLxVjfVijP8CFwgmd6ZgGN-PeF37c2R5RfGFGqcuW9gzjF0e28oZz643g&skey=ee881451c540fdec&v=v20)
 						format('woff2');
 			}
@@ -163,7 +171,9 @@
 			}
 
 			code {
-				font-family: Fira Sans, monospace;
+				font-family:
+					Fira Sans,
+					monospace;
 				font-size: calc(1em - 2px);
 				color: #555;
 				background-color: #f0f0f0;
@@ -307,7 +317,7 @@
 
 		<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
-		%svelte.head%
+		%sveltekit.head%
 		<meta property="og:title" content="I'm Paul Mendoza" />
 		<meta property="og:site_name" content="I'm Paul Mendoza" />
 		<meta property="og:description" content="Paul Mendoza's Portfolio Site" />
@@ -316,7 +326,7 @@
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@qdozaq" />
 	</head>
-	<body class="scrollbar">
-		<div id="svelte">%svelte.body%</div>
+	<body class="scrollbar" data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

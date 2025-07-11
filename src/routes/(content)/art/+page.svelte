@@ -1,7 +1,10 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import type { Image, Album } from './_types/Image';
 	import { send, receive } from 'utils/crossfade';
-	export let images: Array<Image | Album>;
+	
+	export let data: PageData;
+	$: images = data.images as Array<Image | Album>;
 </script>
 
 <style>
@@ -73,7 +76,7 @@
 <h1>Art</h1>
 <div class="grid">
 	{#each images as img}
-		<a sveltekit:noscroll href="/art/{img.is_album ? 'a/' : ''}{img.id}">
+		<a data-sveltekit-noscroll href="/art/{img.is_album ? 'a/' : ''}{img.id}">
 			<img
 				alt={img.title}
 				out:send={{ key: img.id }}

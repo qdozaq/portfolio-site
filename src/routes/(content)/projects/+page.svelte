@@ -1,32 +1,29 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
-	import { videos, videoMap } from './_videos';
-	import type { Video } from './_videos';
+	import { projects, projectMap } from './_projects';
+	import type { Project } from './_projects';
 	export const load: Load = async ({ url }) => {
 		const project = url.searchParams.get('project');
 		if (project) {
-			const index = videoMap[project];
-			return { props: { selected: videos[index] } };
+			const index = projectMap[project];
+			return { props: { selected: projects[index] } };
 		}
 		return { props: { selected: null } };
 	};
 </script>
 
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
+	import Pill from 'components/Pill.svelte';
 	import { goto } from '$app/navigation';
-	import { accent } from 'utils/color';
 
-	export let selected: Video | null;
+	export let selected: Project | null;
 
 	$: browser && document.body.classList.toggle('noscroll', selected !== null);
 
 	let hover: number | undefined;
-
-	const playerUrl = 'https://player.vimeo.com/video/';
-	const playerOptions = ['title=0', 'byline=0', 'portrait=0', `color=${accent}`].join('&');
 
 	function play(index: number) {
 		return () => {
@@ -39,7 +36,7 @@
 	}
 
 	function back() {
-		goto('/motion', { noscroll: true });
+		goto('/projects', { noScroll: true });
 	}
 </script>
 
@@ -89,6 +86,10 @@
 		margin-bottom: 6rem;
 	}
 
+	.selected video {
+		display: block;
+	}
+
 	.project {
 		/* maintain 16:9 aspect ratio */
 		padding-top: calc(56.25% + 3rem);
@@ -110,19 +111,8 @@
 		height: 100%;
 	}
 
-	iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.iframe-wrapper {
-		position: relative;
-		padding-bottom: 56.25%;
-		height: 0;
-		/* margin: 0 0.5em; */
+	.link {
+		display: block;
 	}
 
 	.close {
@@ -173,25 +163,27 @@
 </style>
 
 <svelte:head>
-	<title>Motion Work</title>
-	<meta name="description" content="Collection of my motion graphics work" />
+	<title>Projects</title>
+	<meta name="description" content="A collection of my programming projects" />
 </svelte:head>
 
-<h1>Motion Work</h1>
+<h1>Projects</h1>
 
 <div class="container">
-	{#each videos as { key, title }, index}
+	{#each projects as { key, title, novideo }, index}
 		<div class="project" on:mouseover={play(index)} on:mouseout={pause}>
 			{#if !selected || (selected && selected.key !== key)}
 				<div class="project-inner" out:send={{ key }} in:receive={{ key }}>
 					<h2>{title}</h2>
 					<article class="card">
-						<a href="/motion?project={key}" sveltekit:noscroll>
-							<img alt={title} src="/{key}.jpg" class:display={hover !== index} />
-							<video playsinline autoplay muted loop class:display={hover === index}>
-								<source src="/{key}.webm" type="video/webm" />
-								<source src="/{key}.mp4" type="video/mp4" />
-							</video>
+						<a href="/projects?project={key}" data-sveltekit-noscroll>
+							<img alt={title} src="/{key}.jpg" class:display={novideo || hover !== index} />
+							{#if !novideo}
+								<video playsinline autoplay muted loop class:display={hover === index}>
+									<source src="/{key}.webm" type="video/webm" />
+									<source src="/{key}.mp4" type="video/mp4" />
+								</video>
+							{/if}
 						</a>
 					</article>
 				</div>
@@ -203,24 +195,32 @@
 {#if selected !== null}
 	<div class="selected-container scrollbar" transition:fade on:click|self={back}>
 		<div class="selected">
-			{#await selected then { title, key, description, videoId }}
+			{#await selected then { title, key, description, link, github, tools, novideo }}
 				<div style="margin-bottom: 1rem" out:send={{ key }} in:receive={{ key }}>
 					<div class="header" on:click={back}>
 						<h2>{title}</h2>
 						<button name="close" class="close">&#10005</button>
 					</div>
-					<div class="iframe-wrapper">
-						<iframe
-							class="video"
-							{title}
-							src="{playerUrl}{videoId}?{playerOptions}"
-							frameborder="0"
-							allowfullscreen
-						/>
-					</div>
+					<a href="/projects" data-sveltekit-noscroll>
+						<video playsinline autoplay muted loop poster="/{key}.jpg">
+							<source src="/{key}.webm" type="video/webm" />
+							<source src="/{key}.mp4" type="video/mp4" />
+						</video>
+					</a>
 				</div>
+				<a class="link" target="_blank" rel="noopener noreferrer" href={link}>{link}</a>
+				{#if github !== undefined}
+					<a class="link" target="_blank" rel="noopener noreferrer" href={github}>{github}</a>
+				{/if}
 				<p>
 					{@html description}
+				</p>
+				<p>
+					<em>Created with:</em>
+					<br />
+					{#each tools as [tool, toolLink]}
+						<Pill href={toolLink} text={tool} />
+					{/each}
 				</p>
 			{/await}
 		</div>

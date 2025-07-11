@@ -1,24 +1,21 @@
-import preprocess from 'svelte-preprocess';
-import vercel from '@sveltejs/adapter-vercel';
-// import node from '@sveltejs/adapter-node';
-import path from 'node:path';
+import adapter from '@sveltejs/adapter-vercel';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess({
+		scss: {
+			prependData: '@import "src/sass/vars.scss";'
+		}
+	}),
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		adapter: vercel(),
-		vite: {
-			resolve: {
-				alias: {
-					components: path.resolve('./src/components'),
-					utils: path.resolve('./src/utils'),
-					icons: path.resolve('./src/icons')
-				}
-			}
+		adapter: adapter(),
+		alias: {
+			components: './src/components',
+			utils: './src/utils',
+			icons: './src/icons'
 		}
 	}
 };

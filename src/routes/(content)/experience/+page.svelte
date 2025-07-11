@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script>
 	import PageSection from 'components/PageSection.svelte';
 	import Pill from 'components/Pill.svelte';
