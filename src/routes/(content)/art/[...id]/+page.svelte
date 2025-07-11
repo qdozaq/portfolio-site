@@ -79,8 +79,8 @@
 </style>
 
 <svelte:head>
-	<title>{imageData.title}</title>
-	<meta name="description" content="{imageData.title} showcase" />
+	<title>{imageData?.title || 'Loading...'}</title>
+	<meta name="description" content="{imageData?.title || 'Art'} showcase" />
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
@@ -88,7 +88,7 @@
 	<div class="content">
 		<div class="header" on:click={back}>
 			<h2>
-				{@html imageData.title}
+				{@html imageData?.title || 'Loading...'}
 			</h2>
 			<button name="close" class="close">&#10005</button>
 		</div>

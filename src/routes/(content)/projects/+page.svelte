@@ -1,27 +1,17 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import { projects, projectMap } from './_projects';
-	import type { Project } from './_projects';
-	export const load: Load = async ({ url }) => {
-		const project = url.searchParams.get('project');
-		if (project) {
-			const index = projectMap[project];
-			return { props: { selected: projects[index] } };
-		}
-		return { props: { selected: null } };
-	};
-</script>
-
 <script lang="ts">
+	import type { PageData } from './$types';
+	import { projects } from './_projects';
+	import type { Project } from './_projects';
 	import { browser } from '$app/environment';
 	import { fade } from 'svelte/transition';
 	import { send, receive } from 'utils/crossfade';
 	import Pill from 'components/Pill.svelte';
 	import { goto } from '$app/navigation';
 
-	export let selected: Project | null;
+	export let data: PageData;
+	$: selected = data.selected;
 
-	$: browser && document.body.classList.toggle('noscroll', selected !== null);
+	$: browser && document.body.classList.toggle('noscroll', !!selected);
 
 	let hover: number | undefined;
 
@@ -192,37 +182,36 @@
 	{/each}
 </div>
 
-{#if selected !== null}
+{#if selected}
+	{@const { title, key, description, link, github, tools, novideo } = selected}
 	<div class="selected-container scrollbar" transition:fade on:click|self={back}>
 		<div class="selected">
-			{#await selected then { title, key, description, link, github, tools, novideo }}
-				<div style="margin-bottom: 1rem" out:send={{ key }} in:receive={{ key }}>
-					<div class="header" on:click={back}>
-						<h2>{title}</h2>
-						<button name="close" class="close">&#10005</button>
-					</div>
-					<a href="/projects" data-sveltekit-noscroll>
-						<video playsinline autoplay muted loop poster="/{key}.jpg">
-							<source src="/{key}.webm" type="video/webm" />
-							<source src="/{key}.mp4" type="video/mp4" />
-						</video>
-					</a>
+			<div style="margin-bottom: 1rem" out:send={{ key }} in:receive={{ key }}>
+				<div class="header" on:click={back}>
+					<h2>{title}</h2>
+					<button name="close" class="close">&#10005</button>
 				</div>
-				<a class="link" target="_blank" rel="noopener noreferrer" href={link}>{link}</a>
-				{#if github !== undefined}
-					<a class="link" target="_blank" rel="noopener noreferrer" href={github}>{github}</a>
-				{/if}
-				<p>
-					{@html description}
-				</p>
-				<p>
-					<em>Created with:</em>
-					<br />
-					{#each tools as [tool, toolLink]}
-						<Pill href={toolLink} text={tool} />
-					{/each}
-				</p>
-			{/await}
+				<a href="/projects" data-sveltekit-noscroll>
+					<video playsinline autoplay muted loop poster="/{key}.jpg">
+						<source src="/{key}.webm" type="video/webm" />
+						<source src="/{key}.mp4" type="video/mp4" />
+					</video>
+				</a>
+			</div>
+			<a class="link" target="_blank" rel="noopener noreferrer" href={link}>{link}</a>
+			{#if github !== undefined}
+				<a class="link" target="_blank" rel="noopener noreferrer" href={github}>{github}</a>
+			{/if}
+			<p>
+				{@html description}
+			</p>
+			<p>
+				<em>Created with:</em>
+				<br />
+				{#each tools as [tool, toolLink]}
+					<Pill href={toolLink} text={tool} />
+				{/each}
+			</p>
 		</div>
 	</div>
 {/if}
